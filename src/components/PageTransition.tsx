@@ -3,22 +3,22 @@
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
-const DURATION = 0.5;
+import { easeOutExpo } from "@/lib/motion";
 
 const variants = {
   initial: {
-    opacity: 0,
+    opacity: 1,
     y: 12,
   },
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: DURATION, ease: "easeOut" as const },
+    transition: { duration: 0.6, ease: easeOutExpo },
   },
   exit: {
     opacity: 0,
     y: -8,
-    transition: { duration: DURATION, ease: "easeOut" as const },
+    transition: { duration: 0.35, ease: easeOutExpo },
   },
 };
 
@@ -30,7 +30,7 @@ export default function PageTransition({
   const pathname = usePathname();
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="wait">
       <motion.div
         key={pathname}
         initial="initial"

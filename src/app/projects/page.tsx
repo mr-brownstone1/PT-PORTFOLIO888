@@ -1,43 +1,33 @@
 import PageLayout from "@/components/PageLayout";
-import ProjectCard from "@/components/ProjectCard";
+import ProjectPortfolioList from "@/components/ProjectPortfolioList";
 import SectionHeader from "@/components/SectionHeader";
 import ScrollReveal from "@/components/ScrollReveal";
-import { projectCategories } from "@/config/projectCategories";
-import { getProjectsBySystemType } from "@/config/projects";
+import { projects } from "@/config/projects";
+
+/** โปรเจกต์ที่มีรูป preview ขึ้นก่อน */
+function sortProjectsForPortfolio() {
+  return [...projects].sort((a, b) => {
+    if (a.image && !b.image) return -1;
+    if (!a.image && b.image) return 1;
+    return 0;
+  });
+}
 
 export default function ProjectsPage() {
+  const portfolioProjects = sortProjectsForPortfolio();
+
   return (
     <PageLayout>
-      <div className="page-container pb-16 md:pb-20">
-        
-          <ScrollReveal>
-            <SectionHeader
-              eyebrow="Projects"
-              title="My Latest Works"
-              description="Top-tier projects crafted with passion, simplicity, and attention to detail — company and freelance."
-            />
-          </ScrollReveal>
+      <div className="page-container pb-20 md:pb-28">
+        <ScrollReveal>
+          <SectionHeader
+            eyebrow="Portfolio"
+            title="Crafted Experiences"
+            description="A collection of design solutions crafted with purpose, creativity, and attention to detail."
+          />
+        </ScrollReveal>
 
-          {projectCategories.map((cat) => {
-            const list = getProjectsBySystemType(cat.slug);
-            return (
-              <section key={cat.slug} id={cat.slug} className="mt-14 scroll-mt-28">
-                <h2 className="font-display text-2xl font-semibold text-austin-text">
-                  {cat.label}
-                </h2>
-                <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {list.map((p) => (
-                    <ProjectCard key={p.slug} {...p} />
-                  ))}
-                </div>
-                {list.length === 0 && (
-                  <p className="mt-4 text-sm text-austin-muted">
-                    ยังไม่มีโปรเจกต์ในหมวดนี้
-                  </p>
-                )}
-              </section>
-            );
-          })}
+        <ProjectPortfolioList projects={portfolioProjects} />
       </div>
     </PageLayout>
   );

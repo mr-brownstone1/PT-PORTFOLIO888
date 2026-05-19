@@ -1,37 +1,40 @@
-"use client";
-
 import type { ComponentType } from "react";
-import {
-  ApartmentOutlined,
-  AppstoreOutlined,
-  BlockOutlined,
-  CompassOutlined,
-  ExperimentOutlined,
-  LayoutOutlined,
-  MobileOutlined,
-  PartitionOutlined,
-  PlayCircleOutlined,
-  RocketOutlined,
-  SafetyOutlined,
-  SendOutlined,
-  SwapOutlined,
-  ThunderboltOutlined,
-} from "@ant-design/icons";
 
-/** Map iconKey จาก config ไปยังไอคอนมินิมอล Ant Design */
-export const stackIconMap: Record<string, ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
-  ApartmentOutlined,
-  AppstoreOutlined,
-  BlockOutlined,
-  CompassOutlined,
-  ExperimentOutlined,
-  LayoutOutlined,
-  MobileOutlined,
-  PartitionOutlined,
-  PlayCircleOutlined,
-  RocketOutlined,
-  SafetyOutlined,
-  SendOutlined,
-  SwapOutlined,
-  ThunderboltOutlined,
+/** Stack item icons — outline SVG ชุดเดียวกับ Bento / About */
+import type { IconSize } from "@/components/ui/Icon";
+import {
+  BlocksIcon,
+  BoltIcon,
+  CompassIcon,
+  ComponentsIcon,
+  DevicePhoneIcon,
+  FlaskIcon,
+  FlowIcon,
+  LayoutIcon,
+  PlayIcon,
+  RocketIcon,
+  SendIcon,
+  ShieldIcon,
+  StructureIcon,
+  SwapIcon,
+} from "@/components/icons/outlined";
+
+type StackIconComponent = ComponentType<{ size?: IconSize; className?: string }>;
+
+/** Map iconKey จาก config → ไอคอน outline ชุดเดียวกับ Bento / About */
+export const stackIconMap: Record<string, StackIconComponent> = {
+  ApartmentOutlined: FlowIcon,
+  PartitionOutlined: StructureIcon,
+  CompassOutlined: CompassIcon,
+  LayoutOutlined: LayoutIcon,
+  ExperimentOutlined: FlaskIcon,
+  AppstoreOutlined: BlocksIcon,
+  BlockOutlined: ComponentsIcon,
+  SwapOutlined: SwapIcon,
+  MobileOutlined: DevicePhoneIcon,
+  SafetyOutlined: ShieldIcon,
+  PlayCircleOutlined: PlayIcon,
+  ThunderboltOutlined: BoltIcon,
+  RocketOutlined: RocketIcon,
+  SendOutlined: SendIcon,
 };

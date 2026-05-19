@@ -5,77 +5,80 @@ export type SystemTypeSlug = (typeof projectCategories)[number]["slug"];
 
 /**
  * รายการโปรเจกต์ — แก้ไขที่นี่เมื่อเพิ่ม/ลบโปรเจกต์
- * group: "company" = โปรเจกต์จากงานบริษัท, "freelance" = โปรเจกต์ฟรีแลนซ์
  * systemTypes: หมวดหมู่ระบบที่โปรเจกต์นี้เกี่ยวข้อง (เช่น erp, pos, crm)
  */
-export type ProjectGroup = "company" | "freelance";
-
 export type Project = {
   slug: string;
   title: string;
   category: string;
-  date: string;
   summary: string;
-  group: ProjectGroup;
+  /** รูป preview สำหรับ carousel / การ์ด (optional) */
+  image?: string;
   /** หมวดหมู่ระบบ (Website Design, ERP, POS ฯลฯ) — ถ้าไม่ใส่จะไม่โผล่ใน section ตามประเภท */
   systemTypes?: SystemTypeSlug[];
 };
 
 export const projects: Project[] = [
   {
-    slug: "changthai-thappraya-website",
-    title: "Website Changthai Thappraya",
-    category: "Website Design",
-    date: "2024",
+    slug: "rattana-code-888",
+    title: "RattanaCode_888",
+    category: "System Design",
     summary:
-      "ระบบแสดงกิจกรรม + ระบบจัดการ Back office สำหรับเพิ่ม ลบ และแก้ไขข้อมูล Product",
-    group: "freelance",
-    systemTypes: ["website-design"],
+      "Freelance practice delivering custom systems and websites—inventory, POS, booking, and brand sites.",
+    image: "/projects/rattana-code-888.png",
+    systemTypes: ["software-for-business", "admin-system"],
+  },
+  {
+    slug: "changthai-thappraya-website",
+    title: "Project - Booking System",
+    category: "System Design",
+    summary:
+      "Full-cycle travel booking management — from creating tour programs to organizing trips.",
+    image: "/projects/booking-system.png",
+    systemTypes: ["software-for-business", "admin-system"],
   },
   {
     slug: "bermahadev-website",
-    title: "Website Bermahadev",
-    category: "Website Design",
-    date: "2024",
+    title: "Project - Inventory Management System",
+    category: "System Design",
     summary:
-      "ระบบทำนายเบอร์มงคล + ระบบจัดการ Back office สำหรับเพิ่ม ลบ และแก้ไขข้อมูลตามต้องการ",
-    group: "freelance",
-    systemTypes: ["website-design"],
+      "Inventory and POS in one system — from stock management to in-store sales.",
+    image: "/projects/inventory-management.png",
+    systemTypes: ["stock-inventory", "pos", "admin-system"],
   },
   {
     slug: "payment-system",
-    title: "Payment System",
-    category: "UX/UI Design",
-    date: "2024",
+    title: "Project - Accounting System",
+    category: "System Design",
     summary:
-      "Redesigned the payment process to reduce steps and improve clarity. Users previously struggled to understand the flow.",
-    group: "company",
+      "Income and expense accounting — track money in, money out, and stay on top of finances.",
+    image: "/projects/accounting-system.png",
+    systemTypes: ["accounting-system", "admin-system"],
+  },
+  {
+    slug: "landing-page-website",
+    title: "Landing page website, responsive",
+    category: "Customer Project (Web)",
+    summary:
+      "Responsive marketing landing pages for client brands—clear hierarchy, mobile-first layouts, and conversion-focused sections.",
+    systemTypes: ["website-design"],
   },
   {
     slug: "dashboard",
     title: "Dashboard",
     category: "UX/UI Design",
-    date: "2024",
     summary:
-      "Case study in progress — context, problem, process, and outcomes.",
-    group: "company",
+      "Admin and analytics dashboards for operations—data density, scanability, and role-based views that teams use every day.",
+    systemTypes: ["admin-system"],
   },
   {
-    slug: "brand-identity",
-    title: "Brand Identity",
+    slug: "graphic",
+    title: "Graphic",
     category: "Graphic Design",
-    date: "2024",
     summary:
-      "Brand identity and visual design for a startup. Logo, guidelines, and marketing materials.",
-    group: "freelance",
+      "Visual design for brands—logos, social assets, posters, and marketing materials with a consistent look and feel.",
   },
 ];
-
-/** โปรเจกต์แยกตามหมวด สำหรับแสดงในหน้า Project */
-export const projectsByGroup = {
-  company: projects.filter((p) => p.group === "company"),
-  freelance: projects.filter((p) => p.group === "freelance"),
-};
 
 /** โปรเจกต์แยกตามประเภทระบบ (สำหรับ section ตามหมวดหมู่) */
 export function getProjectsBySystemType(slug: SystemTypeSlug): Project[] {

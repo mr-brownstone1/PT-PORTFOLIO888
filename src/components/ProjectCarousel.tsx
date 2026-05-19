@@ -1,114 +1,221 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@/components/icons/outlined";
+import {
+  motion,
+  useReducedMotion,
+  type PanInfo,
+} from "framer-motion";
+import FeaturedProjectCard from "./FeaturedProjectCard";
 import type { Project } from "@/config/projects";
 
-const categoryColors: Record<string, string> = {
-  "Website Design": "bg-austin-green/15 text-austin-green",
-  "UX/UI Design": "bg-austin-blue/15 text-austin-blue",
-  "Graphic Design": "bg-austin-orange/15 text-austin-orange",
-  default: "bg-austin-cyan/15 text-austin-cyan",
-};
+const AUTO_PLAY_MS = 4500;
 
-function getEmoji(slug: string) {
-  if (slug.includes("payment")) return "💳";
-  if (slug.includes("dashboard")) return "📊";
-  if (slug.includes("brand")) return "✨";
-  if (slug.includes("changthai")) return "🏝️";
-  if (slug.includes("bermahadev")) return "🔮";
-  return "🎨";
-}
 
 type Props = { projects: Project[] };
 
 export default function ProjectCarousel({ projects }: Props) {
   const [index, setIndex] = useState(0);
-  const current = projects[index];
-  const badgeClass = categoryColors[current?.category] ?? categoryColors.default;
+  const [offset, setOffset] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
 
-  const prev = () => setIndex((i) => (i === 0 ? projects.length - 1 : i - 1));
-  const next = () => setIndex((i) => (i === projects.length - 1 ? 0 : i + 1));
+  const updateOffset = useCallback(() => {
+    const viewport = viewportRef.current;
+    const track = trackRef.current;
+    if (!viewport || !track) return;
 
-  if (!current) return null;
+    const card = track.children[index] as HTMLElement | undefined;
+    if (!card) return;
+
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+    const viewportCenter = viewport.clientWidth / 2;
+    setOffset(viewportCenter - cardCenter);
+  }, [index]);
+
+  useLayoutEffect(() => {
+    updateOffset();
+  }, [updateOffset, projects.length]);
+
+  useEffect(() => {
+    window.addEventListener("resize", updateOffset);
+    return () => window.removeEventListener("resize", updateOffset);
+  }, [updateOffset]);
+
+  const prev = useCallback(
+    () => setIndex((i) => (i === 0 ? projects.length - 1 : i - 1)),
+    [projects.length]
+  );
+
+  const next = useCallback(
+    () => setIndex((i) => (i === projects.length - 1 ? 0 : i + 1)),
+    [projects.length]
+  );
+
+  useEffect(() => {
+    if (reduceMotion || paused || isDragging || projects.length <= 1) return;
+
+    const timer = window.setInterval(next, AUTO_PLAY_MS);
+    return () => window.clearInterval(timer);
+  }, [reduceMotion, paused, isDragging, next, projects.length]);
+
+  const handlePanEnd = (_: unknown, info: PanInfo) => {
+    setIsDragging(false);
+    const { offset: panOffset, velocity } = info;
+
+    if (panOffset.x < -60 || velocity.x < -350) {
+      next();
+      return;
+    }
+    if (panOffset.x > 60 || velocity.x > 350) {
+      prev();
+    }
+  };
+
+  if (projects.length === 0) return null;
+
+  const activeProject = projects[index];
+  const progress = ((index + 1) / projects.length) * 100;
 
   return (
-    <div className="mt-10">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={current.slug}
-          initial={ { opacity: 0, x: 24 } }
-          animate={ { opacity: 1, x: 0 } }
-          exit={ { opacity: 0, x: -24 } }
-          transition={ { duration: 0.35, ease: "easeOut" } }
+    <div className="relative mt-10 w-full">
+      <div
+        className="relative"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocusCapture={() => setPaused(true)}
+        onBlurCapture={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) {
+            setPaused(false);
+          }
+        }}
+      >
+        <div
+          ref={viewportRef}
+          className="cursor-grab overflow-hidden active:cursor-grabbing"
+          data-lenis-prevent
         >
-          <Link
-            href={`/case-study/${current.slug}`}
-            className="austin-card group block overflow-hidden hover-lift"
+          <motion.div
+            ref={trackRef}
+            className="flex items-stretch gap-4 px-4 sm:gap-5 sm:px-6 md:gap-6"
+            animate={{ x: offset }}
+            drag={reduceMotion ? false : "x"}
+            dragElastic={0.12}
+            dragMomentum={false}
+            onDragStart={() => {
+              setIsDragging(true);
+              setPaused(true);
+            }}
+            onDragEnd={(_, info) => {
+              setIsDragging(false);
+              setPaused(false);
+              handlePanEnd(_, info);
+            }}
+            transition={
+              reduceMotion
+                ? { duration: 0 }
+                : { duration: 1.15, ease: [0.33, 1, 0.68, 1] }
+            }
           >
-            <div className="flex aspect-[16/10] items-center justify-center bg-austin-surface-solid text-7xl md:aspect-[2/1] md:text-8xl">
-              <span className="transition-transform duration-500 group-hover:scale-110">
-                {getEmoji(current.slug)}
-              </span>
-            </div>
-            <div className="p-8 md:p-10">
-              <div className="flex flex-wrap gap-2">
-                <span className={`rounded-full px-3 py-1 text-xs font-medium ${badgeClass}`}>
-                  {current.category}
-                </span>
-                <span className="rounded-full bg-austin-surface-solid px-3 py-1 text-xs font-medium text-austin-muted">
-                  {current.group === "company" ? "Company" : "Freelance"}
-                </span>
+            {projects.map((project, i) => (
+              <div
+                key={project.slug}
+                className="w-[min(740px,88vw)] shrink-0 sm:w-[min(800px,80vw)] lg:w-[min(860px,74vw)]"
+              >
+                <FeaturedProjectCard
+                  project={project}
+                  index={i + 1}
+                  variant="carousel"
+                  isActive={i === index}
+                  onFocus={() => setIndex(i)}
+                />
               </div>
-              <h3 className="mt-4 font-display text-2xl font-semibold text-austin-text md:text-3xl">
-                {current.title}
-              </h3>
-              <p className="mt-3 max-w-2xl text-base leading-relaxed text-austin-muted">
-                {current.summary}
-              </p>
-              <p className="mt-6 text-sm font-medium text-austin-text">
-                Read case study →
-              </p>
-            </div>
-          </Link>
-        </motion.div>
-      </AnimatePresence>
+            ))}
+          </motion.div>
+        </div>
 
-      <div className="mt-6 flex items-center justify-center gap-4">
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-kathin-bg via-kathin-bg/85 to-transparent sm:w-20 md:w-28"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-kathin-bg via-kathin-bg/85 to-transparent sm:w-20 md:w-28"
+          aria-hidden
+        />
+
         <button
           type="button"
           onClick={prev}
           aria-label="Previous project"
-          className="austin-card-inner flex h-12 w-12 items-center justify-center text-austin-text transition hover:scale-105"
+          className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-kathin-surface-solid/90 text-kathin-text shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4)] backdrop-blur-sm transition hover:scale-105 hover:border-[rgba(255,87,34,0.35)] hover:text-[var(--kathin-orange)] sm:left-4 sm:h-12 sm:w-12 md:left-8"
         >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
+          <ChevronLeftIcon size="md" />
         </button>
-        <div className="flex gap-2">
-          {projects.map((p, i) => (
-            <button
-              key={p.slug}
-              type="button"
-              aria-label={`Go to ${p.title}`}
-              onClick={() => setIndex(i)}
-              className={`h-2 rounded-full transition-all ${
-                i === index ? "w-8 bg-austin-text" : "w-2 bg-austin-muted/40"
-              }`}
-            />
-          ))}
-        </div>
         <button
           type="button"
           onClick={next}
           aria-label="Next project"
-          className="austin-card-inner flex h-12 w-12 items-center justify-center text-austin-text transition hover:scale-105"
+          className="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-kathin-surface-solid/90 text-kathin-text shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4)] backdrop-blur-sm transition hover:scale-105 hover:border-[rgba(255,87,34,0.35)] hover:text-[var(--kathin-orange)] sm:right-4 sm:h-12 sm:w-12 md:right-8"
         >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <ChevronRightIcon size="md" />
         </button>
+      </div>
+
+      <div className="page-container mt-8">
+        <div className="mx-auto flex max-w-md flex-col items-center gap-4">
+          <div className="flex w-full items-center gap-3">
+            <span className="w-7 shrink-0 font-display text-sm font-semibold tabular-nums text-[var(--kathin-orange)]">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <div className="relative h-1 flex-1 overflow-hidden rounded-full bg-kathin-muted/20">
+              <motion.div
+                className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[var(--kathin-orange-deep)] via-[var(--kathin-orange)] to-[var(--kathin-orange-gradient-mid)]"
+                animate={{ width: `${progress}%` }}
+                transition={
+                  reduceMotion
+                    ? { duration: 0 }
+                    : { duration: 0.55, ease: [0.33, 1, 0.68, 1] }
+                }
+              />
+            </div>
+            <span className="w-7 shrink-0 text-right font-display text-sm tabular-nums text-kathin-muted">
+              {String(projects.length).padStart(2, "0")}
+            </span>
+          </div>
+
+          <p className="text-center font-display text-base font-medium text-kathin-text sm:text-lg">
+            {activeProject.title}
+          </p>
+
+          <div className="flex justify-center gap-2">
+            {projects.map((project, i) => (
+              <button
+                key={project.slug}
+                type="button"
+                aria-label={`Go to ${project.title}`}
+                onClick={() => setIndex(i)}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === index
+                    ? "w-7 bg-[var(--kathin-orange)]"
+                    : "w-1.5 bg-kathin-muted/35 hover:bg-kathin-muted/55"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

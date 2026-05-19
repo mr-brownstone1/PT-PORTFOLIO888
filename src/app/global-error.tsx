@@ -17,7 +17,7 @@ export default function GlobalError({
         <button
           type="button"
           onClick={() => reset()}
-          style={{ marginTop: "1.5rem", padding: "0.5rem 1.5rem", borderRadius: "9999px", background: "#fff", color: "#000", fontWeight: 500, fontSize: "0.875rem", border: "none", cursor: "pointer" }}
+          style={{ marginTop: "1.5rem", padding: "0.625rem 1.5rem", borderRadius: "9999px", background: "linear-gradient(135deg, #ff3d00, #ff5722, #ff8f1a)", color: "#fff", fontWeight: 500, fontSize: "0.875rem", border: "none", cursor: "pointer" }}
         >
           Try again
         </button>

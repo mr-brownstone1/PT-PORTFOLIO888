@@ -14,7 +14,7 @@ export default function StackPage() {
           <ScrollReveal>
             <Link
               href="/"
-              className="mb-8 inline-flex items-center gap-2 text-sm text-austin-muted hover:text-austin-text"
+              className="mb-8 inline-flex items-center gap-2 text-sm text-kathin-muted hover:text-kathin-text"
             >
               ← Back to home
             </Link>
@@ -29,11 +29,11 @@ export default function StackPage() {
             {stackSections.map((section) => (
               <ScrollReveal key={section.title}>
                 <div>
-                  <h2 className="font-display text-xl font-semibold text-austin-text">
+                  <h2 className="font-display text-xl font-semibold text-kathin-text">
                     {section.title}
                   </h2>
                   {section.subtitle && (
-                    <p className="mt-1 text-sm text-austin-muted">{section.subtitle}</p>
+                    <p className="mt-1 text-sm text-kathin-muted">{section.subtitle}</p>
                   )}
                   <ScrollRevealStagger className="mt-5 grid gap-3 sm:grid-cols-2">
                     {section.items.map((item) => (

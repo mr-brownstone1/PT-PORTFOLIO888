@@ -1,11 +1,13 @@
 "use client";
 
-import { useRef, Children, isValidElement } from "react";
+import { cloneElement, useRef, Children, isValidElement } from "react";
 import { motion, useInView } from "framer-motion";
 
-const DURATION = 0.5;
-const Y_OFFSET = 16;
-const STAGGER_DELAY = 0.08;
+import { easeOutExpo } from "@/lib/motion";
+
+const DURATION = 0.6;
+const Y_OFFSET = 20;
+const STAGGER_DELAY = 0.09;
 
 const containerVariants = {
   hidden: {},
@@ -18,11 +20,12 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: Y_OFFSET },
+  hidden: { opacity: 0, y: Y_OFFSET, filter: "blur(6px)" },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: DURATION, ease: "easeOut" as const },
+    filter: "blur(0px)",
+    transition: { duration: DURATION, ease: easeOutExpo },
   },
 };
 
@@ -52,17 +55,30 @@ export default function ScrollRevealStagger({
       variants={containerVariants}
       className={className}
     >
-      {Children.map(children, (child, index) =>
-        isValidElement(child) ? (
-          <motion.div key={index} variants={itemVariants}>
-            {child}
+      {Children.map(children, (child, index) => {
+        if (!isValidElement(child)) {
+          return (
+            <motion.div key={index} variants={itemVariants}>
+              {child}
+            </motion.div>
+          );
+        }
+
+        const childProps = child.props as { className?: string };
+        const itemClassName = childProps.className;
+
+        return (
+          <motion.div
+            key={child.key ?? index}
+            variants={itemVariants}
+            className={itemClassName}
+          >
+            {itemClassName
+              ? cloneElement(child, { className: undefined } as Record<string, unknown>)
+              : child}
           </motion.div>
-        ) : (
-          <motion.div key={index} variants={itemVariants}>
-            {child}
-          </motion.div>
-        )
-      )}
+        );
+      })}
     </motion.div>
   );
 }

@@ -4,7 +4,6 @@ import Projects from "@/components/Projects";
 import WorkWithMe from "@/components/WorkWithMe";
 import About from "@/components/About";
 import Stack from "@/components/Stack";
-import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -15,7 +14,6 @@ export default function Home() {
       <WorkWithMe />
       <Projects />
       <Stack preview />
-      <FAQ />
       <Contact />
     </PageLayout>
   );

@@ -37,11 +37,11 @@ export default function ContactModal({ isOpen, onClose }: Props) {
         className="absolute inset-0 bg-zinc-900/40 backdrop-blur-[2px] transition-opacity"
         aria-label="ปิด"
       />
-      <div className="relative w-full max-w-sm rounded-2xl border border-[var(--austin-border)] bg-austin-bg p-6 shadow-xl">
+      <div className="relative w-full max-w-sm rounded-2xl border border-[var(--kathin-border)] bg-kathin-bg p-6 shadow-xl">
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-full p-1 text-austin-muted transition hover:bg-austin-surface hover:text-austin-text"
+          className="absolute right-4 top-4 rounded-full p-1 text-kathin-muted transition hover:bg-kathin-surface hover:text-kathin-text"
           aria-label="ปิด"
         >
           <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,23 +50,23 @@ export default function ContactModal({ isOpen, onClose }: Props) {
         </button>
         <h2
           id="contact-modal-title"
-          className="text-sm font-semibold uppercase tracking-wider text-austin-muted"
+          className="text-sm font-semibold uppercase tracking-wider text-kathin-muted"
         >
           Contact
         </h2>
         <dl className="mt-4 space-y-3">
           <div>
-            <dt className="text-xs text-austin-muted">Phone Number</dt>
+            <dt className="text-xs text-kathin-muted">Phone Number</dt>
             <dd>
-              <a href={`tel:${PHONE}`} className="text-austin-text hover:underline">
+              <a href={`tel:${PHONE}`} className="text-kathin-text hover:text-[var(--kathin-orange)] hover:underline">
                 {PHONE}
               </a>
             </dd>
           </div>
           <div>
-            <dt className="text-xs text-austin-muted">Email</dt>
+            <dt className="text-xs text-kathin-muted">Email</dt>
             <dd>
-              <a href={`mailto:${EMAIL}`} className="text-austin-text hover:underline">
+              <a href={`mailto:${EMAIL}`} className="text-kathin-text hover:text-[var(--kathin-orange)] hover:underline">
                 {EMAIL}
               </a>
             </dd>

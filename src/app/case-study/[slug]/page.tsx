@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import ProjectCard from "@/components/ProjectCard";
 import PageLayout from "@/components/PageLayout";
+import CaseStudyPage from "@/components/CaseStudyPage";
+import RattanaCodeCaseStudy from "@/components/RattanaCodeCaseStudy";
 import { projects } from "@/config/projects";
 
 const caseStudyDetails: Record<
@@ -12,52 +12,92 @@ const caseStudyDetails: Record<
     solution: string;
     process: string[];
     website?: string;
+    tools?: string;
   }
 > = {
   "changthai-thappraya-website": {
-    role: "Web Designer / Developer",
+    role: "UX/UI Designer",
+    tools: "Figma",
     problem:
-      "ต้องการเว็บสำหรับนำเสนอกิจกรรมและข้อมูลบริการ พร้อมระบบหลังบ้านให้ทีมอัปเดตข้อมูลสินค้าได้เอง",
+      "Travel teams needed one place to manage bookings across the full trip lifecycle—not scattered tools for programs, reservations, and operations.",
     solution:
-      "ออกแบบและพัฒนาเว็บไซต์พร้อม Back office เพื่อจัดการข้อมูลกิจกรรมและ Product ได้ง่าย รองรับการเพิ่ม ลบ และแก้ไขข้อมูล",
+      "Designed a full-cycle booking platform covering tour program setup, reservation management, and trip organization—with dashboards that keep teams aligned from planning to departure.",
     process: [
-      "Requirement Gathering",
-      "UI Design",
-      "Frontend Development",
-      "Back Office Development",
+      "Discovery & Workflow Mapping",
+      "Information Architecture",
+      "UX/UI Design",
+      "Design Handoff",
     ],
   },
   "bermahadev-website": {
-    role: "Web Designer / Developer",
+    role: "UX/UI Designer",
+    tools: "Figma",
     problem:
-      "ต้องการเว็บไซต์หลักพร้อมฟีเจอร์ทำนายเบอร์มงคล และมีระบบหลังบ้านให้ทีมงานจัดการข้อมูลได้เอง",
+      "Retail teams juggled separate tools for stock tracking and checkout—leading to mismatched inventory and slow sales at the counter.",
     solution:
-      "ออกแบบหน้าเว็บให้ใช้งานง่าย พร้อมเชื่อมระบบจัดการ Back office สำหรับเพิ่ม ลบ และแก้ไขข้อมูลได้อย่างยืดหยุ่น",
+      "Designed a unified inventory and POS platform: manage stock levels, track sales across locations, and process in-store transactions from one dashboard.",
     process: [
+      "Discovery & Workflow Mapping",
       "Information Architecture",
-      "UI Design",
-      "Frontend Development",
-      "Back Office Setup",
+      "UX/UI Design",
+      "Design Handoff",
     ],
-    website: "https://bermahadev.com",
   },
   "payment-system": {
     role: "UX/UI Designer",
-    problem: "Users struggled to understand the payment flow.",
+    tools: "Figma",
+    problem:
+      "Small teams tracked income and expenses across spreadsheets and notes—making it hard to see cash flow or spot issues early.",
     solution:
-      "Redesigned the payment process to reduce steps and improve clarity.",
+      "Designed an accounting platform to record income and expenses, visualize financial trends, and give teams a clear view of their books in one place.",
     process: [
-      "User Research",
-      "Wireframe",
-      "Prototype",
-      "Usability Testing",
+      "Discovery & Requirements",
+      "Information Architecture",
+      "UX/UI Design",
+      "Design Handoff",
     ],
   },
   dashboard: {
     role: "UX/UI Designer",
-    problem: "—",
-    solution: "—",
-    process: ["Context", "Problem / Opportunity", "Process", "Outcomes"],
+    tools: "Figma",
+    problem:
+      "Operations teams needed dashboards that surface the right metrics without clutter—so they could act quickly without hunting through screens.",
+    solution:
+      "Designed admin and analytics views with clear hierarchy, scannable data tables, and role-based layouts tuned for daily use.",
+    process: [
+      "Discovery & Requirements",
+      "Information Architecture",
+      "UX/UI Design",
+      "Design Handoff",
+    ],
+  },
+  "landing-page-website": {
+    role: "UX/UI Designer",
+    tools: "Figma",
+    problem:
+      "Client brands needed responsive landing pages that communicate value fast on mobile and desktop—not one-size layouts that break on small screens.",
+    solution:
+      "Designed conversion-focused landing pages with responsive grids, clear CTAs, and section rhythm that works from phone to desktop.",
+    process: [
+      "Discovery & Content",
+      "Wireframes",
+      "Visual Design",
+      "Responsive Handoff",
+    ],
+  },
+  graphic: {
+    role: "Graphic Designer",
+    tools: "Adobe Illustrator, Photoshop",
+    problem:
+      "Brands needed consistent visual assets across channels—without mismatched logos, colors, or ad-hoc social posts.",
+    solution:
+      "Delivered logo systems, marketing collateral, and social-ready graphics with a cohesive visual language.",
+    process: [
+      "Brand Discovery",
+      "Concept & Exploration",
+      "Refinement",
+      "Asset Delivery",
+    ],
   },
 };
 
@@ -68,7 +108,7 @@ function pickSuggestedProjects(currentSlug: string, count = 3) {
   return candidates.slice(0, Math.min(count, candidates.length));
 }
 
-export default async function CaseStudyPage({
+export default async function CaseStudyRoute({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -78,80 +118,33 @@ export default async function CaseStudyPage({
 
   if (!project) notFound();
 
+  const suggestedProjects = pickSuggestedProjects(slug, 3);
+
+  if (slug === "rattana-code-888") {
+    return (
+      <PageLayout>
+        <RattanaCodeCaseStudy
+          project={project}
+          suggestedProjects={suggestedProjects}
+        />
+      </PageLayout>
+    );
+  }
+
   const detail = caseStudyDetails[slug] ?? {
     role: "UX/UI Designer",
     problem: "อยู่ระหว่างสรุปปัญหาและบริบทของโปรเจกต์",
     solution: "อยู่ระหว่างอัปเดตแนวทางและผลลัพธ์ของงาน",
     process: ["Context", "Problem / Opportunity", "Process", "Outcomes"],
   };
-  const suggestedProjects = pickSuggestedProjects(slug, 3);
 
   return (
     <PageLayout>
-      <article className="page-container max-w-3xl py-8 pb-20 md:py-12">
-        <p className="text-xs font-medium text-austin-muted">{detail.role}</p>
-        <h1 className="mt-2 font-display text-4xl font-bold leading-tight tracking-tight text-austin-text sm:text-5xl">
-          {project.title}
-        </h1>
-        <p className="mt-3 text-sm text-austin-muted">
-          {project.category} • {project.date}
-        </p>
-
-        <div className="mt-14 space-y-6">
-          <section className="austin-card p-8">
-            <h2 className="text-xs font-medium text-austin-muted">Problem</h2>
-            <p className="mt-3 text-lg leading-relaxed text-austin-text">{detail.problem}</p>
-          </section>
-          <section className="austin-card p-8">
-            <h2 className="text-xs font-medium text-austin-muted">Solution</h2>
-            <p className="mt-3 text-lg leading-relaxed text-austin-text">{detail.solution}</p>
-          </section>
-          <section className="austin-card p-8">
-            <h2 className="text-xs font-medium text-austin-muted">Process</h2>
-            <ol className="mt-4 list-decimal space-y-2 pl-5 text-austin-muted">
-              {detail.process.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ol>
-          </section>
-          {detail.website && (
-            <section className="austin-card p-8">
-              <h2 className="text-xs font-medium text-austin-muted">Website</h2>
-              <a
-                href={detail.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-block font-medium text-austin-text underline hover:opacity-70"
-              >
-                {detail.website}
-              </a>
-            </section>
-          )}
-        </div>
-
-        <section className="mt-16">
-          <h2 className="font-display text-2xl font-semibold text-austin-text">
-            More projects
-          </h2>
-          <p className="mt-2 text-sm text-austin-muted">
-            You might also want to explore these case studies.
-          </p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {suggestedProjects.map((p) => (
-              <ProjectCard key={p.slug} {...p} />
-            ))}
-          </div>
-        </section>
-
-        <div className="mt-12">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 text-sm font-medium text-austin-text hover:opacity-70"
-          >
-            ← Back to projects
-          </Link>
-        </div>
-      </article>
+      <CaseStudyPage
+        project={project}
+        detail={detail}
+        suggestedProjects={suggestedProjects}
+      />
     </PageLayout>
   );
 }

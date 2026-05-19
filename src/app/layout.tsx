@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import SmoothScroll from "@/components/SmoothScroll";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,8 +30,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${interDisplay.variable}`}>
-      <body className="min-h-screen bg-austin-bg font-sans text-austin-text antialiased">
-        {children}
+      <body className="min-h-screen bg-kathin-bg font-sans text-kathin-text antialiased">
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { stackIconMap } from "@/config/stackIcons";
 import { stackSections } from "@/config/stack";
 import type { StackItem } from "@/config/stack";
-import { BlockOutlined } from "@ant-design/icons";
+import { ArrowRightIcon, ComponentsIcon } from "@/components/icons/outlined";
+import IconBadge from "@/components/ui/IconBadge";
 import SectionHeader from "./SectionHeader";
 import ScrollReveal from "@/components/ScrollReveal";
 import ScrollRevealStagger from "@/components/ScrollRevealStagger";
@@ -13,32 +14,32 @@ import ScrollRevealStagger from "@/components/ScrollRevealStagger";
 export function StackItemCard({ item }: { item: StackItem }) {
   if (item.type === "logo") {
     return (
-      <div className="austin-card-inner flex items-center gap-4 p-5 hover-lift">
-        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-austin-sm bg-austin-text/5">
+      <div className="kathin-card-inner flex items-center gap-4 p-5 hover-lift md:p-6">
+        <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-kathin-text/[0.06]">
           <Image
             src={item.icon}
             alt={item.name}
-            fill
-            className="object-contain p-1.5"
-            sizes="48px"
+            width={40}
+            height={40}
+            className="object-contain"
           />
         </div>
         <div className="min-w-0">
-          <p className="font-medium text-austin-text">{item.name}</p>
-          <p className="mt-0.5 text-sm text-austin-muted">{item.description}</p>
+          <p className="font-medium text-kathin-text">{item.name}</p>
+          <p className="mt-0.5 text-sm text-kathin-muted">{item.description}</p>
         </div>
       </div>
     );
   }
-  const IconComponent = stackIconMap[item.iconKey] ?? BlockOutlined;
+  const IconComponent = stackIconMap[item.iconKey] ?? ComponentsIcon;
   return (
-    <div className="austin-card-inner flex items-center gap-4 p-5 hover-lift">
-      <div className="stack-card-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-austin-sm bg-austin-text/5 text-austin-text">
-        <IconComponent style={{ fontSize: 20 }} />
-      </div>
+    <div className="kathin-card-inner flex items-center gap-4 p-5 hover-lift md:p-6">
+      <IconBadge size="md">
+        <IconComponent size="lg" />
+      </IconBadge>
       <div className="min-w-0">
-        <p className="font-medium text-austin-text">{item.name}</p>
-        <p className="mt-0.5 text-sm text-austin-muted">{item.description}</p>
+        <p className="font-medium text-kathin-text">{item.name}</p>
+        <p className="mt-0.5 text-sm text-kathin-muted">{item.description}</p>
       </div>
     </div>
   );
@@ -64,11 +65,11 @@ export default function Stack({ preview = false }: StackProps) {
           {sections.map((section) => (
             <ScrollReveal key={section.title}>
               <div>
-                <h3 className="font-display text-xl font-semibold text-austin-text">
+                <h3 className="font-display text-xl font-semibold text-kathin-text">
                   {section.title}
                 </h3>
                 {section.subtitle && (
-                  <p className="mt-1 text-sm text-austin-muted">{section.subtitle}</p>
+                  <p className="mt-1 text-sm text-kathin-muted">{section.subtitle}</p>
                 )}
                 <ScrollRevealStagger className="mt-5 grid gap-3 sm:grid-cols-2">
                   {section.items.map((item) => (
@@ -85,14 +86,9 @@ export default function Stack({ preview = false }: StackProps) {
 
         {preview && (
           <div className="mt-8 text-center">
-            <Link
-              href="/stack"
-              className="hover-lift inline-flex items-center gap-2 rounded-full border border-[var(--austin-border)] px-6 py-3 text-sm font-medium text-austin-text"
-            >
+            <Link href="/stack" className="btn btn-outline hover-lift inline-flex px-6 py-3">
               View full stack
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <ArrowRightIcon size="sm" />
             </Link>
           </div>
         )}

@@ -13,14 +13,14 @@ export default function SectionHeader({
 }: Props) {
   return (
     <div className={className}>
-      <p className="font-display text-xs font-medium tracking-tight text-austin-muted">
+      <p className="font-display text-xs font-medium tracking-tight text-kathin-muted">
         {eyebrow}
       </p>
-      <h2 className="mt-3 font-display text-[clamp(2rem,5vw,3.4375rem)] font-bold leading-[1.2] tracking-tight text-austin-text">
+      <h2 className="mt-3 font-display text-[clamp(2rem,5vw,3.4375rem)] font-bold leading-[1.2] tracking-tight text-kathin-text">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-austin-muted md:text-lg">
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-kathin-muted md:text-lg">
           {description}
         </p>
       )}

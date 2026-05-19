@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRightIcon } from "@/components/icons/outlined";
 import ProjectCarousel from "./ProjectCarousel";
 import SectionHeader from "./SectionHeader";
 import ScrollReveal from "./ScrollReveal";
@@ -14,21 +15,19 @@ export default function Projects() {
           <SectionHeader
             eyebrow="Projects"
             title="Featured Work"
-            description="Selected projects from company work and freelance — web, systems, and product design."
+            description="Selected UX/UI and product design — from research and flows to polished interfaces."
           />
         </ScrollReveal>
-        <ProjectCarousel projects={featured} />
-        <div className="mt-10 text-center">
-          <Link
-            href="/projects"
-            className="hover-lift inline-flex items-center gap-2 rounded-full border border-[var(--austin-border)] bg-austin-surface px-6 py-3 text-sm font-medium text-austin-text"
-          >
-            View all projects
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
-        </div>
+      </div>
+      <ProjectCarousel projects={featured} />
+      <div className="page-container mt-10 text-center">
+        <Link
+          href="/projects"
+          className="btn btn-outline hover-lift px-6 py-3"
+        >
+          View all projects
+          <ArrowRightIcon size="sm" />
+        </Link>
       </div>
     </section>
   );
