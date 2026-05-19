@@ -41,17 +41,23 @@ export default function CaseStudyMockup({
           </p>
         </div>
       ) : (
-        /* eslint-disable-next-line @next/next/no-img-element */
-        <img
-          src={src}
-          alt={alt}
-          className={`w-full border border-white/[0.08] object-cover object-center ${
-            prominent ? "rounded-kathin-lg" : "rounded-kathin-md"
+        <div
+          className={`flex w-full items-center justify-center overflow-hidden border border-white/[0.08] bg-[#0a0a0a] ${
+            prominent
+              ? "min-h-[220px] max-h-[min(72vh,560px)] rounded-kathin-lg p-3 sm:min-h-[260px] sm:p-4"
+              : "min-h-[180px] max-h-[min(60vh,420px)] rounded-kathin-md p-2 sm:min-h-[220px] sm:p-3"
           }`}
-          loading="lazy"
-          decoding="async"
-          onError={() => setFailed(true)}
-        />
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={src}
+            alt={alt}
+            className="max-h-[min(68vh,520px)] w-full object-contain object-center"
+            loading="lazy"
+            decoding="async"
+            onError={() => setFailed(true)}
+          />
+        </div>
       )}
       {caption && (
         <figcaption className="mt-3 text-center text-xs text-kathin-muted">

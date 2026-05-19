@@ -11,11 +11,16 @@ export type GalleryImage = {
 type Props = {
   images: GalleryImage[];
   title: string;
+  className?: string;
 };
 
 const THUMB_SCROLL_PX = 220;
 
-export default function ProjectImageGallery({ images, title }: Props) {
+export default function ProjectImageGallery({
+  images,
+  title,
+  className = "mt-6",
+}: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -93,18 +98,20 @@ export default function ProjectImageGallery({ images, title }: Props) {
   const showThumbNav = images.length > 1;
 
   return (
-    <div className="mt-6" aria-label={`${title} screen gallery`}>
-      <figure className="relative overflow-hidden rounded-kathin-lg border border-white/[0.08] bg-[#141414]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          key={active.src}
-          src={active.src}
-          alt={active.alt}
-          className="aspect-[16/10] w-full object-cover object-top transition-opacity duration-300 sm:aspect-[2/1]"
-          loading={activeIndex === 0 ? "eager" : "lazy"}
-          decoding="async"
-          draggable={false}
-        />
+    <div className={className} aria-label={`${title} screen gallery`}>
+      <figure className="relative overflow-hidden rounded-kathin-lg border border-white/[0.08] bg-[#0a0a0a]">
+        <div className="flex aspect-[16/10] max-h-[min(72vh,560px)] w-full items-center justify-center p-3 sm:aspect-[2/1] sm:p-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            key={active.src}
+            src={active.src}
+            alt={active.alt}
+            className="max-h-full max-w-full object-contain object-center transition-opacity duration-300"
+            loading={activeIndex === 0 ? "eager" : "lazy"}
+            decoding="async"
+            draggable={false}
+          />
+        </div>
         <figcaption className="sr-only">{active.alt}</figcaption>
         <span
           className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-black/60 px-2.5 py-1 text-xs font-medium tabular-nums text-white backdrop-blur-sm"
@@ -170,7 +177,7 @@ export default function ProjectImageGallery({ images, title }: Props) {
                   aria-selected={isActive}
                   aria-label={`${img.alt} (${index + 1} of ${images.length})`}
                   onClick={() => goTo(index)}
-                  className={`relative shrink-0 overflow-hidden rounded-kathin-md border-2 bg-[#141414] transition-all duration-200 ${
+                  className={`relative flex h-14 w-[4.5rem] shrink-0 items-center justify-center overflow-hidden rounded-kathin-md border-2 bg-[#0a0a0a] transition-all duration-200 sm:h-16 sm:w-24 ${
                     isActive
                       ? "border-[var(--kathin-orange)] ring-2 ring-[var(--kathin-orange)]/25"
                       : "border-white/10 opacity-70 hover:border-white/25 hover:opacity-100"
@@ -180,7 +187,7 @@ export default function ProjectImageGallery({ images, title }: Props) {
                   <img
                     src={img.src}
                     alt=""
-                    className="h-14 w-[4.5rem] object-cover object-top sm:h-16 sm:w-24"
+                    className="max-h-full max-w-full object-contain object-center p-0.5"
                     loading="lazy"
                     decoding="async"
                     draggable={false}

@@ -12,7 +12,7 @@ function getEmoji(slug: string) {
   if (slug === "payment-system") return "💳";
   if (slug === "dashboard") return "📊";
   if (slug === "graphic") return "✨";
-  if (slug.includes("changthai")) return "🏝️";
+  if (slug.includes("booking") || slug.includes("changthai")) return "🏝️";
   if (slug.includes("bermahadev")) return "🔮";
   return "🎨";
 }

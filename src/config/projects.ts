@@ -29,11 +29,11 @@ export const projects: Project[] = [
     systemTypes: ["software-for-business", "admin-system"],
   },
   {
-    slug: "changthai-thappraya-website",
+    slug: "booking-system",
     title: "Project - Booking System",
     category: "System Design",
     summary:
-      "Full-cycle travel booking management — from creating tour programs to organizing trips.",
+      "Tour booking ecosystem—customer website and web admin for operations.",
     image: "/projects/booking-system.png",
     systemTypes: ["software-for-business", "admin-system"],
   },
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     title: "Project - Inventory Management System",
     category: "System Design",
     summary:
-      "Inventory and POS in one system — from stock management to in-store sales.",
+      "Stock receiving, inventory tracking, and in-store POS—with franchise support for cross-branch sales.",
     image: "/projects/inventory-management.png",
     systemTypes: ["stock-inventory", "pos", "admin-system"],
   },
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     title: "Project - Accounting System",
     category: "System Design",
     summary:
-      "Income and expense accounting — track money in, money out, and stay on top of finances.",
+      "Company income and expense accounting—invoices, documents, and role-based access in one admin.",
     image: "/projects/accounting-system.png",
     systemTypes: ["accounting-system", "admin-system"],
   },
@@ -60,7 +60,7 @@ export const projects: Project[] = [
     title: "Landing page website, responsive",
     category: "Customer Project (Web)",
     summary:
-      "Responsive marketing landing pages for client brands—clear hierarchy, mobile-first layouts, and conversion-focused sections.",
+      "YSERVICE marketing landing—responsive layout with hero, features, pricing, and contact on one scroll.",
     systemTypes: ["website-design"],
   },
   {

@@ -16,6 +16,7 @@ export function getProjectEmoji(slug: string) {
   if (slug.includes("dashboard")) return "📊";
   if (slug.includes("landing")) return "🌐";
   if (slug === "graphic") return "✨";
+  if (slug.includes("booking")) return "🏝️";
   if (slug.includes("changthai")) return "🏝️";
   if (slug.includes("bermahadev")) return "🔮";
   return "🎨";
@@ -87,9 +88,11 @@ export default function FeaturedProjectCard({
                 <img
                   src={project.image}
                   alt=""
-                  className={`relative max-h-full max-w-full object-contain object-center drop-shadow-[0_16px_40px_rgba(0,0,0,0.5)] transition-transform duration-500 ${
-                    active ? "group-hover:scale-[1.04]" : ""
-                  }`}
+                  className={`relative object-contain object-center drop-shadow-[0_16px_40px_rgba(0,0,0,0.5)] transition-transform duration-500 ${
+                    project.slug === "landing-page-website"
+                      ? "max-h-[72%] max-w-[58%]"
+                      : "max-h-full max-w-full"
+                  } ${active ? "group-hover:scale-[1.04]" : ""}`}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
