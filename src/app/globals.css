@@ -1,0 +1,211 @@
+:root {
+  --austin-bg: #ededed;
+  --austin-text: #000000;
+  --austin-text-muted: rgba(0, 0, 0, 0.55);
+  --austin-surface: rgba(237, 237, 237, 0.55);
+  --austin-surface-solid: #e8e8e8;
+  --austin-border: rgba(0, 0, 0, 0.08);
+  --austin-green: #17bf6f;
+  --austin-blue: #0f94fa;
+  --austin-orange: #faa40f;
+  --austin-cyan: #00ddd8;
+  --austin-radius-lg: 35px;
+  --austin-radius-md: 30px;
+  --austin-radius-sm: 25px;
+  --accent: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --austin-bg: #000000;
+    --austin-text: #ffffff;
+    --austin-text-muted: rgba(255, 255, 255, 0.65);
+    --austin-surface: rgba(31, 31, 31, 0.8);
+    --austin-surface-solid: #2e2e2e;
+    --austin-border: rgba(255, 255, 255, 0.1);
+    --accent: #ffffff;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--austin-bg);
+  color: var(--austin-text);
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ระยะจากขอบจอ */
+@layer components {
+  .page-container {
+    width: 100%;
+    max-width: 75rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+  }
+
+  @media (min-width: 640px) {
+    .page-container {
+      padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+      padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .page-container {
+      padding-left: max(2.5rem, env(safe-area-inset-left, 0px));
+      padding-right: max(2.5rem, env(safe-area-inset-right, 0px));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .page-container {
+      padding-left: max(3rem, env(safe-area-inset-left, 0px));
+      padding-right: max(3rem, env(safe-area-inset-right, 0px));
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .page-container {
+      padding-left: max(3.5rem, env(safe-area-inset-left, 0px));
+      padding-right: max(3.5rem, env(safe-area-inset-right, 0px));
+    }
+  }
+
+  .page-section {
+    scroll-margin-top: 6rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .page-section {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+
+  .marquee-viewport {
+    width: 100%;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .marquee-animate-left {
+    animation: marquee-scroll-left 45s linear infinite;
+  }
+
+  .marquee-animate-right {
+    animation: marquee-scroll-right 50s linear infinite;
+  }
+
+  .marquee-viewport:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-scroll-right {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-animate-left,
+    .marquee-animate-right {
+      animation: none;
+    }
+    .marquee-viewport {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 0.5rem;
+    }
+    .marquee-track {
+      padding-inline: max(1.25rem, env(safe-area-inset-left));
+    }
+    .mockup-card {
+      scroll-snap-align: start;
+    }
+  }
+
+}
+
+.austin-glass {
+  background: var(--austin-surface);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.austin-card {
+  background: var(--austin-surface);
+  border-radius: var(--austin-radius-lg);
+}
+
+.austin-card-inner {
+  background: var(--austin-surface-solid);
+  border-radius: var(--austin-radius-md);
+}
+
+.hover-lift {
+  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+.hover-lift:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.12);
+}
+
+.stack-card-icon svg {
+  stroke-width: 0.6;
+}
+
+@supports (view-transition-name: none) {
+  .main-transition-wrap {
+    view-transition-name: main-content;
+  }
+  ::view-transition-old(main-content) {
+    animation: fade-out 0.45s ease-out;
+  }
+  ::view-transition-new(main-content) {
+    animation: fade-in 0.45s ease-out;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
