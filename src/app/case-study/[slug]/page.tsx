@@ -3,7 +3,9 @@ import PageLayout from "@/components/PageLayout";
 import CaseStudyPage from "@/components/CaseStudyPage";
 import AccountingCaseStudy from "@/components/AccountingCaseStudy";
 import BookingSystemCaseStudy from "@/components/BookingSystemCaseStudy";
-import LandingPageCaseStudy from "@/components/LandingPageCaseStudy";
+import WebsiteCaseStudy from "@/components/WebsiteCaseStudy";
+import DashboardCaseStudy from "@/components/DashboardCaseStudy";
+import GraphicCaseStudy from "@/components/GraphicCaseStudy";
 import InventoryCaseStudy from "@/components/InventoryCaseStudy";
 import RattanaCodeCaseStudy from "@/components/RattanaCodeCaseStudy";
 import { projects } from "@/config/projects";
@@ -35,7 +37,7 @@ const caseStudyDetails: Record<
   },
   graphic: {
     role: "Graphic Designer",
-    tools: "Adobe Illustrator, Photoshop",
+    tools: "Adobe Illustrator, Photoshop, and Figma",
     problem:
       "Brands needed consistent visual assets across channels—without mismatched logos, colors, or ad-hoc social posts.",
     solution:
@@ -104,7 +106,29 @@ export default async function CaseStudyRoute({
   if (slug === "landing-page-website") {
     return (
       <PageLayout>
-        <LandingPageCaseStudy
+        <WebsiteCaseStudy
+          project={project}
+          suggestedProjects={suggestedProjects}
+        />
+      </PageLayout>
+    );
+  }
+
+  if (slug === "dashboard") {
+    return (
+      <PageLayout>
+        <DashboardCaseStudy
+          project={project}
+          suggestedProjects={suggestedProjects}
+        />
+      </PageLayout>
+    );
+  }
+
+  if (slug === "graphic") {
+    return (
+      <PageLayout>
+        <GraphicCaseStudy
           project={project}
           suggestedProjects={suggestedProjects}
         />
@@ -125,8 +149,8 @@ export default async function CaseStudyRoute({
 
   const detail = caseStudyDetails[slug] ?? {
     role: "UX/UI Designer",
-    problem: "อยู่ระหว่างสรุปปัญหาและบริบทของโปรเจกต์",
-    solution: "อยู่ระหว่างอัปเดตแนวทางและผลลัพธ์ของงาน",
+    problem: "The project problem and context are being documented.",
+    solution: "The approach and outcomes for this project are being updated.",
     process: ["Context", "Problem / Opportunity", "Process", "Outcomes"],
   };
 

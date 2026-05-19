@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="pb-12 pt-8">
       <div className="page-container">
-        <div className="kathin-card grid gap-10 p-8 md:grid-cols-3 md:p-10">
+        <div className="kathin-glass-card kathin-glass-specular relative grid grid-cols-1 gap-8 overflow-hidden rounded-[var(--kathin-radius-lg)] p-6 sm:gap-10 sm:p-8 md:grid-cols-3 md:p-10">
           <div>
             <p className="font-display text-lg font-bold text-kathin-text">
               Suphaphorn Khan-Ngoen
@@ -27,11 +27,6 @@ export default function Footer() {
               <li>
                 <Link href="/about" className="text-sm text-kathin-text hover:opacity-70">
                   About
-                </Link>
-              </li>
-              <li>
-                <Link href="/stack" className="text-sm text-kathin-text hover:opacity-70">
-                  Stack
                 </Link>
               </li>
             </ul>

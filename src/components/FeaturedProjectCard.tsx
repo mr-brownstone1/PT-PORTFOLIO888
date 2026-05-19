@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRightIcon } from "@/components/icons/outlined";
+import ProjectCardPreview from "./ProjectCardPreview";
 import type { Project } from "@/config/projects";
 
 export const projectCategoryColors: Record<string, string> = {
@@ -52,7 +53,7 @@ export default function FeaturedProjectCard({
         }
       }}
       aria-current={active ? "true" : undefined}
-      className={`group relative block h-full overflow-hidden rounded-kathin border transition-[opacity,transform,box-shadow,border-color] duration-500 ease-out ${
+      className={`group relative block h-full overflow-hidden rounded-[var(--kathin-radius-lg)] border transition-[opacity,transform,box-shadow,border-color] duration-500 ease-out ${
         active
           ? "hover-lift border-[rgba(255,87,34,0.22)] bg-kathin-surface shadow-[0_24px_64px_-24px_rgba(255,87,34,0.35)]"
           : "scale-[0.98] border-white/[0.06] bg-kathin-surface/80 opacity-55"
@@ -68,44 +69,27 @@ export default function FeaturedProjectCard({
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_85%_80%,rgba(255,87,34,0.05),transparent_60%)]" />
       </div>
 
-      <div className="relative z-10 flex min-h-[300px] flex-col md:min-h-[320px] md:flex-row md:items-stretch lg:min-h-[340px]">
-        <div className="md:w-[46%] md:shrink-0 p-5 sm:p-6 md:py-7 md:pl-7 md:pr-3">
-            <div className="relative flex aspect-[4/3] min-h-[190px] items-center justify-center overflow-hidden rounded-kathin-md border border-white/[0.08] bg-[#141414] p-4 sm:min-h-[210px] sm:p-5 md:aspect-auto md:min-h-[220px] lg:min-h-[240px]">
+      <div className="relative z-10 flex min-h-[280px] flex-col sm:min-h-[300px] md:min-h-[320px] md:flex-row md:items-stretch lg:min-h-[340px]">
+        <div className="md:w-[46%] md:shrink-0 p-4 sm:p-6 md:py-7 md:pl-7 md:pr-3">
+            <div className="glass-frame relative flex aspect-[4/3] min-h-[160px] items-center justify-center overflow-hidden rounded-[var(--kathin-radius-md)] p-3 sm:min-h-[190px] sm:p-4 md:aspect-auto md:min-h-[220px] lg:min-h-[240px]">
               <div
                 className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_45%,rgba(255,87,34,0.1),transparent_70%)]"
                 aria-hidden
               />
               <span
-                className={`pointer-events-none absolute bottom-3 right-4 z-10 select-none font-display text-4xl font-bold leading-none sm:bottom-4 sm:right-5 sm:text-5xl ${
+                className={`pointer-events-none absolute bottom-2 right-3 z-10 select-none font-display text-3xl font-bold leading-none sm:bottom-4 sm:right-5 sm:text-5xl ${
                   active ? "text-white/[0.1]" : "text-white/[0.06]"
                 }`}
                 aria-hidden
               >
                 {number}
               </span>
-              {project.image ? (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img
-                  src={project.image}
-                  alt=""
-                  className={`relative object-contain object-center drop-shadow-[0_16px_40px_rgba(0,0,0,0.5)] transition-transform duration-500 ${
-                    project.slug === "landing-page-website"
-                      ? "max-h-[72%] max-w-[58%]"
-                      : "max-h-full max-w-full"
-                  } ${active ? "group-hover:scale-[1.04]" : ""}`}
-                  loading="lazy"
-                  decoding="async"
-                  draggable={false}
-                />
-              ) : (
-                <span
-                  className={`relative text-6xl transition-transform duration-500 sm:text-7xl ${
-                    active ? "group-hover:scale-110" : ""
-                  }`}
-                >
-                  {getProjectEmoji(project.slug)}
-                </span>
-              )}
+              <ProjectCardPreview
+                lottie={project.lottie}
+                image={project.image}
+                emoji={getProjectEmoji(project.slug)}
+                hoverScale={active}
+              />
             </div>
         </div>
 
@@ -119,7 +103,7 @@ export default function FeaturedProjectCard({
               </span>
             </div>
 
-            <h3 className="mt-4 break-words font-display text-xl font-semibold leading-snug text-kathin-text sm:text-2xl lg:text-[1.65rem]">
+            <h3 className="mt-4 break-words font-display text-lg font-semibold leading-snug text-kathin-text sm:text-2xl lg:text-[1.65rem]">
               {project.title}
             </h3>
             <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-kathin-muted sm:text-base">

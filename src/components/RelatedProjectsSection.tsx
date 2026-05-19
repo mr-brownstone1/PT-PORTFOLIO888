@@ -36,12 +36,7 @@ export default function RelatedProjectsSection({
       <ul className="mt-5 flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden">
         {items.map((p) => (
           <li key={p.slug} className="w-[42%] shrink-0 sm:w-auto">
-            <RelatedProjectCard
-              slug={p.slug}
-              title={p.title}
-              category={p.category}
-              image={p.image}
-            />
+            <RelatedProjectCard project={p} />
           </li>
         ))}
       </ul>

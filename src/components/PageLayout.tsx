@@ -8,9 +8,9 @@ export default function PageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-kathin-bg">
+    <div className="min-h-screen overflow-x-clip bg-kathin-bg">
       <KathinNav />
-      <div className="main-transition-wrap pt-24 md:pt-28">
+      <div className="main-transition-wrap main-offset">
         <main>
           <PageTransition>{children}</PageTransition>
         </main>

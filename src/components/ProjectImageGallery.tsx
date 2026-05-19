@@ -99,8 +99,8 @@ export default function ProjectImageGallery({
 
   return (
     <div className={className} aria-label={`${title} screen gallery`}>
-      <figure className="relative overflow-hidden rounded-kathin-lg border border-white/[0.08] bg-[#0a0a0a]">
-        <div className="flex aspect-[16/10] max-h-[min(72vh,560px)] w-full items-center justify-center p-3 sm:aspect-[2/1] sm:p-4">
+      <figure className="glass-frame kathin-glass-specular relative overflow-hidden rounded-[var(--kathin-radius-lg)]">
+        <div className="glass-frame-surface flex aspect-[16/10] max-h-[min(52vh,22rem)] w-full items-center justify-center p-2 sm:max-h-[min(72vh,560px)] sm:p-4 md:aspect-[2/1]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             key={active.src}
@@ -177,10 +177,10 @@ export default function ProjectImageGallery({
                   aria-selected={isActive}
                   aria-label={`${img.alt} (${index + 1} of ${images.length})`}
                   onClick={() => goTo(index)}
-                  className={`relative flex h-14 w-[4.5rem] shrink-0 items-center justify-center overflow-hidden rounded-kathin-md border-2 bg-[#0a0a0a] transition-all duration-200 sm:h-16 sm:w-24 ${
+                  className={`glass-frame relative flex h-14 w-[4.5rem] shrink-0 items-center justify-center overflow-hidden rounded-kathin-sm border-2 transition-all duration-200 sm:h-16 sm:w-24 ${
                     isActive
                       ? "border-[var(--kathin-orange)] ring-2 ring-[var(--kathin-orange)]/25"
-                      : "border-white/10 opacity-70 hover:border-white/25 hover:opacity-100"
+                      : "border-[var(--glass-border)] opacity-75 hover:border-[var(--glass-border-hover)] hover:opacity-100"
                   }`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -26,6 +26,8 @@ type Props = {
   amount?: number;
   /** Only animate once (Apple-style). Default true */
   once?: boolean;
+  /** Show content immediately (above-the-fold). Avoids blank page if JS is slow. */
+  immediate?: boolean;
   className?: string;
 };
 
@@ -34,11 +36,13 @@ export default function ScrollReveal({
   delay = 0,
   amount = 0.15,
   once = true,
+  immediate = false,
   className,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount, once });
   const reduceMotion = useReducedMotion();
+  const isVisible = immediate || inView;
   const hidden = reduceMotion
     ? { opacity: 0, y: Y_OFFSET }
     : defaultVariants.hidden;
@@ -52,8 +56,8 @@ export default function ScrollReveal({
   return (
     <motion.div
       ref={ref}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      initial={immediate ? false : "hidden"}
+      animate={isVisible ? "visible" : "hidden"}
       variants={{ hidden, visible }}
       className={className}
     >

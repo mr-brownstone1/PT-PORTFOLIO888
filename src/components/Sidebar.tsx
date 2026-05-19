@@ -9,7 +9,6 @@ import {
   HomeOutlined,
   UserOutlined,
   FolderOutlined,
-  SettingOutlined,
 } from "@ant-design/icons";
 import { projectCategories } from "@/config/projectCategories";
 
@@ -22,7 +21,6 @@ const keyToPath: Record<string, string> = {
   ...Object.fromEntries(
     projectCategories.map((c) => [`projects-${c.slug}`, `/projects#${c.slug}`])
   ),
-  stack: "/stack",
 };
 
 const items: MenuItem[] = [
@@ -45,21 +43,12 @@ const items: MenuItem[] = [
       label: c.label,
     })),
   },
-  {
-    type: "divider",
-  },
-  {
-    key: "stack",
-    label: "Stacks",
-    icon: <SettingOutlined />,
-  },
 ];
 
 function pathToSelectedKey(pathname: string): string {
   if (pathname === "/" || pathname === "") return "home";
   if (pathname.startsWith("/about")) return "about";
   if (pathname.startsWith("/projects")) return "projects";
-  if (pathname.startsWith("/stack")) return "stack";
   return "home";
 }
 

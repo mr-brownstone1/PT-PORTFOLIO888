@@ -21,7 +21,7 @@ export default function About() {
         <ScrollReveal>
           <p className="mt-8 text-center text-sm text-kathin-muted">
             <Link
-              href="/about#skills"
+              href="/about#stack"
               className="font-medium text-[var(--kathin-orange)] hover:underline"
             >
               View full profile & experience →

@@ -14,6 +14,8 @@ export type Project = {
   summary: string;
   /** รูป preview สำหรับ carousel / การ์ด (optional) */
   image?: string;
+  /** Lottie animation สำหรับการ์ด (optional, ใช้แทน image) */
+  lottie?: string;
   /** หมวดหมู่ระบบ (Website Design, ERP, POS ฯลฯ) — ถ้าไม่ใส่จะไม่โผล่ใน section ตามประเภท */
   systemTypes?: SystemTypeSlug[];
 };
@@ -30,7 +32,7 @@ export const projects: Project[] = [
   },
   {
     slug: "booking-system",
-    title: "Project - Booking System",
+    title: "Booking System",
     category: "System Design",
     summary:
       "Tour booking ecosystem—customer website and web admin for operations.",
@@ -39,28 +41,30 @@ export const projects: Project[] = [
   },
   {
     slug: "bermahadev-website",
-    title: "Project - Inventory Management System",
+    title: "Inventory Management System",
     category: "System Design",
     summary:
       "Stock receiving, inventory tracking, and in-store POS—with franchise support for cross-branch sales.",
-    image: "/projects/inventory-management.png",
+    lottie: "/projects/inventory-preview.lottie",
     systemTypes: ["stock-inventory", "pos", "admin-system"],
   },
   {
     slug: "payment-system",
-    title: "Project - Accounting System",
+    title: "Accounting System",
     category: "System Design",
     summary:
       "Company income and expense accounting—invoices, documents, and role-based access in one admin.",
+    lottie: "/projects/accounting-preview.lottie",
     image: "/projects/accounting-system.png",
     systemTypes: ["accounting-system", "admin-system"],
   },
   {
     slug: "landing-page-website",
-    title: "Landing page website, responsive",
-    category: "Customer Project (Web)",
+    title: "Website",
+    category: "Client Project (Web)",
     summary:
-      "YSERVICE marketing landing—responsive layout with hero, features, pricing, and contact on one scroll.",
+      "Landing pages and business web apps—responsive marketing sites plus retail dashboards, POS, and inventory.",
+    image: "/projects/website/card-preview.png",
     systemTypes: ["website-design"],
   },
   {
@@ -68,15 +72,17 @@ export const projects: Project[] = [
     title: "Dashboard",
     category: "UX/UI Design",
     summary:
-      "Admin and analytics dashboards for operations—data density, scanability, and role-based views that teams use every day.",
+      "Admin and analytics dashboards for operations—data density, scannability, and role-based views that teams use every day.",
+    lottie: "/projects/dashboard-preview.lottie",
     systemTypes: ["admin-system"],
   },
   {
     slug: "graphic",
-    title: "Graphic",
+    title: "Graphic Design",
     category: "Graphic Design",
     summary:
       "Visual design for brands—logos, social assets, posters, and marketing materials with a consistent look and feel.",
+    lottie: "/projects/graphic-preview.lottie",
   },
 ];
 

@@ -19,15 +19,15 @@ export default function CaseStudyMockup({
 }: Props) {
   const [failed, setFailed] = useState(false);
 
+  const frameClass = prominent
+    ? "glass-frame-tight-prominent rounded-[var(--kathin-radius-lg)] sm:min-h-[260px] sm:p-4"
+    : "glass-frame-tight rounded-[var(--kathin-radius-md)] sm:min-h-[220px] sm:p-3";
+
   return (
     <figure className={className}>
       {failed ? (
         <div
-          className={`flex flex-col items-center justify-center gap-3 rounded-kathin-md border border-dashed border-white/15 bg-[#141414] px-6 py-12 text-center ${
-            prominent
-              ? "min-h-[280px] sm:min-h-[360px]"
-              : "min-h-[220px] sm:min-h-[280px]"
-          }`}
+          className={`glass-frame kathin-glass-specular flex flex-col items-center justify-center gap-3 border-dashed px-6 py-12 text-center ${frameClass}`}
         >
           <span className="text-3xl opacity-40" aria-hidden>
             🖼️
@@ -42,21 +42,19 @@ export default function CaseStudyMockup({
         </div>
       ) : (
         <div
-          className={`flex w-full items-center justify-center overflow-hidden border border-white/[0.08] bg-[#0a0a0a] ${
-            prominent
-              ? "min-h-[220px] max-h-[min(72vh,560px)] rounded-kathin-lg p-3 sm:min-h-[260px] sm:p-4"
-              : "min-h-[180px] max-h-[min(60vh,420px)] rounded-kathin-md p-2 sm:min-h-[220px] sm:p-3"
-          }`}
+          className={`glass-frame kathin-glass-specular flex w-full items-center justify-center ${frameClass}`}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={src}
-            alt={alt}
-            className="max-h-[min(68vh,520px)] w-full object-contain object-center"
-            loading="lazy"
-            decoding="async"
-            onError={() => setFailed(true)}
-          />
+          <div className="glass-frame-surface flex h-full w-full items-center justify-center rounded-[calc(var(--kathin-radius-md)-10px)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={src}
+              alt={alt}
+              className="max-h-[min(48vh,22rem)] w-full object-contain object-center sm:max-h-[min(68vh,520px)]"
+              loading="lazy"
+              decoding="async"
+              onError={() => setFailed(true)}
+            />
+          </div>
         </div>
       )}
       {caption && (

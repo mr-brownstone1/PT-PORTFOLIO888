@@ -1,4 +1,6 @@
 import Link from "next/link";
+import ProjectCardPreview from "./ProjectCardPreview";
+import { getProjectEmoji } from "./FeaturedProjectCard";
 
 const categoryColors: Record<string, string> = {
   "Website Design": "bg-kathin-green/15 text-kathin-green",
@@ -8,21 +10,13 @@ const categoryColors: Record<string, string> = {
   default: "bg-kathin-cyan/15 text-kathin-cyan",
 };
 
-function getEmoji(slug: string) {
-  if (slug === "payment-system") return "💳";
-  if (slug === "dashboard") return "📊";
-  if (slug === "graphic") return "✨";
-  if (slug.includes("booking") || slug.includes("changthai")) return "🏝️";
-  if (slug.includes("bermahadev")) return "🔮";
-  return "🎨";
-}
-
 type Props = {
   slug: string;
   title: string;
   category: string;
   summary: string;
   image?: string;
+  lottie?: string;
 };
 
 export default function ProjectCard({
@@ -31,6 +25,7 @@ export default function ProjectCard({
   category,
   summary,
   image,
+  lottie,
 }: Props) {
   const badgeClass = categoryColors[category] ?? categoryColors.default;
 
@@ -39,21 +34,13 @@ export default function ProjectCard({
       href={`/case-study/${slug}`}
       className="kathin-card group block overflow-hidden hover-lift"
     >
-      <div className="flex aspect-[4/3] items-center justify-center bg-kathin-surface-solid p-4 text-5xl">
-        {image ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src={image}
-            alt=""
-            className="max-h-full max-w-full object-contain object-center transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-            decoding="async"
-          />
-        ) : (
-          <span className="transition-transform duration-500 group-hover:scale-110">
-            {getEmoji(slug)}
-          </span>
-        )}
+      <div className="flex aspect-[4/3] items-center justify-center border-b border-[var(--glass-border)] bg-[var(--glass-bg-elevated)] p-4 text-5xl">
+        <ProjectCardPreview
+          lottie={lottie}
+          image={image}
+          emoji={getProjectEmoji(slug)}
+          hoverScale
+        />
       </div>
       <div className="p-6">
         <span className={`inline-block rounded-full px-3 py-1 text-xs font-medium ${badgeClass}`}>

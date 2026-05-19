@@ -14,7 +14,7 @@ export default function Hero() {
   const container = staggerContainer(0.12, 0.15);
 
   return (
-    <section className="pb-16 pt-24 md:pb-28 md:pt-32">
+    <section className="pb-12 pt-2 sm:pb-16 md:pb-28 md:pt-4">
       <motion.div
         className="page-container hero-glow"
         initial="hidden"
@@ -55,9 +55,9 @@ export default function Hero() {
           — from user research and wireframes to design systems and developer handoff.
         </motion.p>
 
-        <motion.div variants={item} className="mt-10 md:mt-12">
-          <Link href="/projects" className="btn btn-accent hover-lift px-8 py-4 text-[0.9375rem]">
-            View portfolio
+        <motion.div variants={item} className="btn-row mt-8 md:mt-12">
+          <Link href="/projects" className="btn btn-accent hover-lift px-7 py-3.5 text-[0.9375rem] sm:px-8 sm:py-4">
+            View Portfolio
             <ArrowRightIcon size="sm" />
           </Link>
         </motion.div>

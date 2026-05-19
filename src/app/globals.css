@@ -19,6 +19,18 @@
   --kathin-radius-md: 30px;
   --kathin-radius-sm: 25px;
   --accent: #000000;
+  /* iOS-style liquid glass */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-bg-elevated: rgba(255, 255, 255, 0.82);
+  --glass-bg-hover: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-border-hover: rgba(0, 0, 0, 0.12);
+  --glass-blur: 18px;
+  --glass-saturate: 1.25;
+  --glass-highlight: rgba(255, 255, 255, 0.98);
+  --glass-shadow:
+    0 4px 28px -8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,11 +42,32 @@
     --kathin-surface-solid: #2e2e2e;
     --kathin-border: rgba(255, 255, 255, 0.1);
     --accent: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.06);
+    --glass-bg-elevated: rgba(255, 255, 255, 0.09);
+    --glass-bg-hover: rgba(255, 255, 255, 0.11);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-border-hover: rgba(255, 255, 255, 0.17);
+    --glass-blur: 24px;
+    --glass-saturate: 1.55;
+    --glass-highlight: rgba(255, 255, 255, 0.14);
+    --glass-shadow:
+      0 8px 32px -12px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.09);
   }
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+/* Smaller corner radius on phones — glass frames fit narrow screens */
+@media (max-width: 639px) {
+  :root {
+    --kathin-radius-lg: 22px;
+    --kathin-radius-md: 18px;
+    --kathin-radius-sm: 14px;
+  }
 }
 
 /* Lenis smooth scroll — แบบ Framer / Kathin */
@@ -56,13 +89,104 @@ html.lenis body {
 }
 
 body {
-  background: var(--kathin-bg);
+  background-color: var(--kathin-bg);
   color: var(--kathin-text);
+  background-image:
+    radial-gradient(ellipse 90% 55% at 12% -8%, rgba(255, 87, 34, 0.07), transparent 58%),
+    radial-gradient(ellipse 65% 45% at 98% 12%, rgba(0, 0, 0, 0.04), transparent 52%);
+  background-attachment: fixed;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000000;
+    background-image:
+      radial-gradient(ellipse 90% 55% at 12% -8%, rgba(255, 87, 34, 0.1), transparent 58%),
+      radial-gradient(ellipse 65% 45% at 98% 12%, rgba(255, 255, 255, 0.045), transparent 52%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* Intro splash — lock scroll while playing */
+html.intro-splash-active,
+html.intro-splash-active body {
+  overflow: hidden !important;
+  height: 100%;
+}
+
+.intro-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:
+    max(1rem, env(safe-area-inset-top, 0px))
+    max(1rem, env(safe-area-inset-right, 0px))
+    max(1rem, env(safe-area-inset-bottom, 0px))
+    max(1rem, env(safe-area-inset-left, 0px));
+  background-color: var(--kathin-bg);
+  background-image:
+    radial-gradient(ellipse 90% 55% at 12% -8%, rgba(255, 87, 34, 0.07), transparent 58%),
+    radial-gradient(ellipse 65% 45% at 98% 12%, rgba(0, 0, 0, 0.04), transparent 52%);
+  cursor: pointer;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  .intro-splash {
+    background-color: #000000;
+    background-image:
+      radial-gradient(ellipse 90% 55% at 12% -8%, rgba(255, 87, 34, 0.1), transparent 58%),
+      radial-gradient(ellipse 65% 45% at 98% 12%, rgba(255, 255, 255, 0.045), transparent 52%);
+  }
+}
+
+.intro-splash-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 70% 55% at 50% 48%,
+    rgba(255, 87, 34, 0.12),
+    transparent 68%
+  );
+}
+
+.intro-splash-lottie-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(90vw, 22rem);
+  height: min(72dvh, 22rem);
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-splash-lottie {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+}
+
+@media (min-width: 480px) {
+  .intro-splash-lottie-wrap {
+    width: min(78vw, 26rem);
+    height: min(76dvh, 26rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .intro-splash-lottie-wrap {
+    width: min(52vw, 30rem);
+    height: min(80dvh, 30rem);
   }
 }
 
@@ -142,15 +266,59 @@ body {
   }
 
   .page-section {
-    scroll-margin-top: 6rem;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    scroll-margin-top: 5.5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  @media (min-width: 640px) {
+    .page-section {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
   }
 
   @media (min-width: 768px) {
     .page-section {
+      scroll-margin-top: 6rem;
       padding-top: 6rem;
       padding-bottom: 6rem;
+    }
+  }
+
+  /* CTA rows: full-width buttons on narrow phones */
+  .btn-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 480px) {
+    .btn-row {
+      flex-flow: row wrap;
+      gap: 1rem;
+    }
+  }
+
+  .btn-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  @media (min-width: 480px) {
+    .btn-row .btn {
+      width: auto;
+    }
+  }
+
+  /* Main content offset below fixed nav + safe area */
+  .main-offset {
+    padding-top: max(5.25rem, calc(4.25rem + env(safe-area-inset-top, 0px)));
+  }
+
+  @media (min-width: 768px) {
+    .main-offset {
+      padding-top: max(6.5rem, calc(5.5rem + env(safe-area-inset-top, 0px)));
     }
   }
 
@@ -216,16 +384,17 @@ body {
   }
 
   .hero-title {
-    font-size: clamp(2.85rem, 11vw, 5.25rem);
+    font-size: clamp(2.15rem, 10vw, 5.25rem);
     font-weight: 800;
-    line-height: 0.92;
+    line-height: 0.94;
     letter-spacing: -0.03em;
+    overflow-wrap: anywhere;
   }
 
   .hero-greeting {
-    font-size: clamp(2.25rem, 8vw, 4.25rem);
+    font-size: clamp(1.75rem, 7vw, 4.25rem);
     font-weight: 800;
-    line-height: 1;
+    line-height: 1.05;
     letter-spacing: -0.02em;
   }
 
@@ -450,17 +619,19 @@ body {
 
   /* Nav CTA รอง — เบากว่า btn-accent */
   .btn-ghost {
-    background: transparent;
+    background: var(--glass-bg-elevated);
+    backdrop-filter: blur(12px) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(12px) saturate(var(--glass-saturate));
     color: var(--kathin-text);
-    border-color: var(--kathin-border);
-    box-shadow: none;
+    border-color: var(--glass-border);
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
   }
 
   .btn-ghost:hover {
     color: var(--kathin-orange);
-    border-color: rgba(255, 87, 34, 0.45);
-    background: rgba(255, 87, 34, 0.08);
-    box-shadow: none;
+    border-color: rgba(255, 87, 34, 0.4);
+    background: rgba(255, 87, 34, 0.1);
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -484,32 +655,131 @@ body {
 
 }
 
-.kathin-glass {
-  background: var(--kathin-surface);
-  backdrop-filter: blur(16px) saturate(1.2);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2);
-  border: 1px solid var(--kathin-border);
-  box-shadow:
-    0 4px 24px -8px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+/* iOS liquid glass — shared material */
+.kathin-glass,
+.kathin-glass-card,
+.kathin-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.kathin-glass-card,
+.kathin-card {
+  transition:
+    background 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.kathin-glass-card:hover,
+.kathin-card:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
 }
 
 @media (prefers-color-scheme: dark) {
-  .kathin-glass {
+  .kathin-glass-card:hover,
+  .kathin-card:hover {
     box-shadow:
-      0 8px 32px -12px rgba(0, 0, 0, 0.55),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      0 16px 48px -14px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 87, 34, 0.06),
+      inset 0 1px 0 var(--glass-highlight);
   }
 }
 
 .kathin-card {
-  background: var(--kathin-surface);
   border-radius: var(--kathin-radius-lg);
 }
 
 .kathin-card-inner {
-  background: var(--kathin-surface-solid);
+  background: var(--glass-bg-elevated);
+  backdrop-filter: blur(calc(var(--glass-blur) - 4px)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) - 4px)) saturate(var(--glass-saturate));
+  border: 1px solid var(--glass-border);
   border-radius: var(--kathin-radius-md);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+}
+
+/* Top edge highlight — liquid glass specular */
+.kathin-glass-specular::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+}
+
+/* Case study / gallery mockup frames — glass border only, content stays readable */
+.glass-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--glass-bg-elevated);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-frame-surface {
+  background: rgba(0, 0, 0, 0.32);
+}
+
+@media (max-width: 639px) {
+  .glass-frame-tight {
+    min-height: 10rem !important;
+    max-height: min(48vh, 22rem) !important;
+    padding: 0.5rem !important;
+  }
+
+  .glass-frame-tight-prominent {
+    min-height: 12rem !important;
+    max-height: min(56vh, 26rem) !important;
+    padding: 0.625rem !important;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .glass-frame-surface {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* Lighter blur on small screens — performance */
+@media (max-width: 767px) {
+  :root {
+    --glass-blur: 14px;
+  }
+}
+
+/* iOS / accessibility — solid fallback when transparency is reduced */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-blur: 0px;
+    --glass-saturate: 1;
+    --glass-bg: var(--kathin-surface-solid);
+    --glass-bg-elevated: var(--kathin-surface-solid);
+    --glass-bg-hover: var(--kathin-surface-solid);
+    --glass-border: var(--kathin-border);
+    --glass-border-hover: var(--kathin-border);
+  }
+
+  .kathin-glass,
+  .kathin-glass-card,
+  .kathin-card,
+  .kathin-card-inner,
+  .glass-frame,
+  .btn-ghost {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .glass-frame-surface {
+    background: var(--kathin-surface-solid);
+  }
 }
 
 .hover-lift {

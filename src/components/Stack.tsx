@@ -86,7 +86,7 @@ export default function Stack({ preview = false }: StackProps) {
 
         {preview && (
           <div className="mt-8 text-center">
-            <Link href="/stack" className="btn btn-outline hover-lift inline-flex px-6 py-3">
+            <Link href="/about#stack" className="btn btn-outline hover-lift inline-flex px-6 py-3">
               View full stack
               <ArrowRightIcon size="sm" />
             </Link>

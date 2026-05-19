@@ -13,12 +13,12 @@ export const skillCategories: SkillCategory[] = [
     items: [
       "UX/UI Design (Figma, Framer)",
       "Design System, User Flow, Prototyping",
-      "Dev Handoff, Responsive Design",
+      "Developer handoff, responsive design",
     ],
   },
   {
     emoji: "🎨",
-    title: "Graphic Design / Editor",
+    title: "Graphic Design & Video",
     description: "Illustrator, Photoshop, and motion tools for visual work.",
     items: [
       "Illustrator, Photoshop",

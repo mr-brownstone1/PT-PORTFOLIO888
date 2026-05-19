@@ -9,7 +9,7 @@ export const whatIBringCards: WhatIBringCard[] = [
   {
     variant: "sticker",
     fallbackEmoji: "💼",
-    titleLead: "Over",
+    titleLead: "Built on",
     titleBold: "4+ years of experience",
   },
   {
@@ -20,7 +20,7 @@ export const whatIBringCards: WhatIBringCard[] = [
   {
     variant: "sticker",
     fallbackEmoji: "💻",
-    titleLead: "Collaborates with",
+    titleLead: "Partners with",
     titleBold: "product teams",
   },
   {
@@ -33,6 +33,6 @@ export const whatIBringCards: WhatIBringCard[] = [
     variant: "sticker",
     fallbackEmoji: "🚀",
     titleLead: "Turning ideas into",
-    titleBold: "milestones",
+    titleBold: "shipped products",
   },
 ];

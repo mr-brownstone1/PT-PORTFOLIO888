@@ -7,8 +7,10 @@ import { projects } from "@/config/projects";
 /** โปรเจกต์ที่มีรูป preview ขึ้นก่อน */
 function sortProjectsForPortfolio() {
   return [...projects].sort((a, b) => {
-    if (a.image && !b.image) return -1;
-    if (!a.image && b.image) return 1;
+    const aHasPreview = Boolean(a.image || a.lottie);
+    const bHasPreview = Boolean(b.image || b.lottie);
+    if (aHasPreview && !bHasPreview) return -1;
+    if (!aHasPreview && bHasPreview) return 1;
     return 0;
   });
 }

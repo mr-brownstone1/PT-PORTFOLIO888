@@ -13,7 +13,6 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
-  { href: "/stack", label: "Stack" },
 ];
 
 function isActive(pathname: string, href: string) {
@@ -34,7 +33,7 @@ export default function KathinNav() {
       variants={reduceMotion ? fadeOnly : fadeDown}
     >
       <div className="page-container relative">
-        <nav className="kathin-glass flex items-center justify-between gap-4 rounded-kathin px-5 py-3 md:px-8 md:py-4">
+        <nav className="kathin-glass flex items-center justify-between gap-3 rounded-[var(--kathin-radius-lg)] px-4 py-2.5 sm:gap-4 sm:px-5 sm:py-3 md:px-8 md:py-4">
           <Link href="/" className="flex shrink-0 items-center gap-2.5">
             <Image
               src="/avatar.png"
@@ -83,7 +82,7 @@ export default function KathinNav() {
         </nav>
 
         {open && (
-          <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] kathin-glass rounded-kathin-md p-4 md:hidden">
+          <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] kathin-glass rounded-[var(--kathin-radius-md)] p-3 sm:p-4 md:hidden">
             <ul className="flex flex-col gap-1">
               {links.map((link) => (
                 <li key={link.href}>

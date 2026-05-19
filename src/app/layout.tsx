@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import IntroSplash from "@/components/IntroSplash";
 import SmoothScroll from "@/components/SmoothScroll";
 import "lenis/dist/lenis.css";
 import "./globals.css";
@@ -29,9 +30,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${interDisplay.variable}`}>
-      <body className="min-h-screen bg-kathin-bg font-sans text-kathin-text antialiased">
-        <SmoothScroll>{children}</SmoothScroll>
+    <html
+      lang="en"
+      className={`${inter.variable} ${interDisplay.variable}`}
+      style={{ colorScheme: "light dark" }}
+    >
+      <body className="min-h-screen font-sans text-kathin-text antialiased">
+        <SmoothScroll>
+          <IntroSplash />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

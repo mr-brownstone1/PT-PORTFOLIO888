@@ -6,7 +6,7 @@ export const accountingPortfolioIntro = {
   tagline:
     "Company accounting—income, expenses, and finance documents in one admin.",
   overview:
-    "Accounting V.1 supports day-to-day company finances: overview dashboards for what’s owed and paid, lists that tie cost to revenue, invoices and other collection documents, bill preview before print, and role-based access so each team sees only what they need.",
+    "Accounting V.1 supports day-to-day company finances: overview dashboards for amounts owed and paid, lists that tie cost to revenue, invoices and other collection documents, bill preview before printing, and role-based access so each team sees only what they need.",
 };
 
 export const accountingGalleryImages: RattanaGalleryImage[] = [
@@ -28,7 +28,7 @@ export const accountingGalleryImages: RattanaGalleryImage[] = [
   },
   {
     src: "/projects/accounting/05-access-rights.png",
-    alt: "Create system access rights",
+    alt: "System access permissions form",
   },
   {
     src: "/projects/accounting/06-other-bill-preview.png",
