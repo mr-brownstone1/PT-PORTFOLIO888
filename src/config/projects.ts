@@ -35,7 +35,7 @@ export const projects: Project[] = [
     title: "Booking System",
     category: "System Design",
     summary:
-      "Tour booking ecosystem—customer website and web admin for operations.",
+      "Tour booking ecosystem—customer website, B2C booking admin, and tour operations admin.",
     image: "/projects/booking-system.png",
     systemTypes: ["software-for-business", "admin-system"],
   },

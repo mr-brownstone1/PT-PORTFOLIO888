@@ -4,9 +4,9 @@ import type { RattanaGalleryImage, RattanaPortfolioProject } from "./rattanaPort
 export const bookingPortfolioIntro = {
   role: "UX/UI Designer",
   tagline:
-    "End-to-end tour booking—public website and back-office admin in one connected system.",
+    "Tour booking platform—customer website plus two back-office systems for B2C sales and tour operations.",
   overview:
-    "A full tour-management platform: travelers browse and book on the website, and operations teams run programs and reservations in the web admin.",
+    "One connected ecosystem: travelers book on the public website, while teams run direct web sales (products, checkout, payments) and fulfill reservations from other platforms (grouping, departures, guides) in separate admin experiences.",
 };
 
 export const bookingPortfolioSections: RattanaPortfolioProject[] = [
@@ -44,59 +44,76 @@ export const bookingPortfolioSections: RattanaPortfolioProject[] = [
     ],
   },
   {
-    id: "web-admin",
-    title: "Web Admin",
-    category: "Back office",
+    id: "b2c-booking-admin",
+    title: "B2C Booking Management",
+    category: "Back office · B2C",
     summary:
-      "Back-office system to create tour programs, manage bookings, assign trips, and coordinate sales with operations from one dashboard.",
+      "Back office for direct sales on your own website—create tour products, publish them to the public site, and manage the full flow from browsing and selection through checkout and payment recording.",
     images: [
       {
-        src: "/projects/booking/admin/12-overview-mockup.png",
-        alt: "Admin dashboard overview",
-      },
-      {
-        src: "/projects/booking/admin/01-login.png",
+        src: "/projects/booking/b2c/01-login.png",
         alt: "Admin login",
       },
       {
-        src: "/projects/booking/admin/02-booking-dashboard.png",
-        alt: "Booking dashboard and calendar",
+        src: "/projects/booking/b2c/02-product-list.png",
+        alt: "Product catalog — publish, draft, and unpublish",
       },
       {
-        src: "/projects/booking/admin/03-bookings-list.png",
-        alt: "Bookings list and status",
+        src: "/projects/booking/b2c/03-create-product-descriptions.png",
+        alt: "Create product — descriptions and highlights",
       },
       {
-        src: "/projects/booking/admin/04-product-detail.png",
-        alt: "Product detail and options",
+        src: "/projects/booking/b2c/04-create-option-pricing.png",
+        alt: "Create product option — availability and pricing",
       },
       {
-        src: "/projects/booking/admin/05-create-product.png",
-        alt: "Create new product flow",
+        src: "/projects/booking/b2c/05-bookings-list.png",
+        alt: "Bookings list — pending, confirmed, and canceled",
       },
       {
-        src: "/projects/booking/admin/06-reviews.png",
-        alt: "View and filter reviews",
+        src: "/projects/booking/b2c/06-view-reviews.png",
+        alt: "View and filter customer reviews",
       },
       {
-        src: "/projects/booking/admin/07-own-vehicle-group.png",
-        alt: "Assign bookings to vehicles",
+        src: "/projects/booking/b2c/07-reset-password-email.png",
+        alt: "Reset password transactional email",
+      },
+    ],
+  },
+  {
+    id: "tour-operations-admin",
+    title: "Tour Operations Management",
+    category: "Back office · Operations",
+    summary:
+      "Operations hub for bookings imported from other platforms (OTAs, agents, partners)—linked to products already in the system. When reservations arrive, teams manage them here: group passengers, schedule departures, and assign guides.",
+    images: [
+      {
+        src: "/projects/booking/operations/01-create-program.png",
+        alt: "Create program — itinerary, cost, and seller mapping",
       },
       {
-        src: "/projects/booking/admin/08-check-in.png",
-        alt: "Guest check-in",
+        src: "/projects/booking/operations/02-edit-seller.png",
+        alt: "Edit seller — OTA and partner configuration (e.g. Klook)",
       },
       {
-        src: "/projects/booking/admin/09-create-guide.png",
-        alt: "Create guide / staff",
+        src: "/projects/booking/operations/03-own-vehicle-group.png",
+        alt: "Own vehicle group — assign bookings to departures",
       },
       {
-        src: "/projects/booking/admin/10-payment-balance.png",
-        alt: "Payment balance report",
+        src: "/projects/booking/operations/04-check-in.png",
+        alt: "Check in — scan or enter booking ID",
       },
       {
-        src: "/projects/booking/admin/11-invite-email.png",
-        alt: "New user invite email",
+        src: "/projects/booking/operations/05-check-in-list.png",
+        alt: "Check in list — waiting, checked in, and no-show by trip",
+      },
+      {
+        src: "/projects/booking/operations/06-create-guide.png",
+        alt: "Create guide — staff profile and documents",
+      },
+      {
+        src: "/projects/booking/operations/07-user-list.png",
+        alt: "User list — roles and team access",
       },
     ],
   },
