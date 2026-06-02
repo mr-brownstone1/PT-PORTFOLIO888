@@ -1,4 +1,6 @@
+import type { PortfolioIntro } from "./caseStudyNarrative";
 import type { RattanaGalleryImage, RattanaPortfolioProject } from "./rattanaPortfolio";
+import { landingScrollDemo } from "./landingPortfolio";
 
 const img = (n: number, alt: string): RattanaGalleryImage => ({
   src: `/projects/website/${String(n).padStart(2, "0")}.png`,
@@ -15,8 +17,6 @@ const yservice = (file: string, alt: string): RattanaGalleryImage => ({
   alt,
 });
 
-import { landingScrollDemo } from "./landingPortfolio";
-
 /** Marketing landing — MacBook scroll demo */
 export const websiteLandingMacDemo = {
   id: "marketing-landing",
@@ -29,13 +29,27 @@ export const websiteLandingMacDemo = {
   alt: landingScrollDemo.alt,
 };
 
-export const websitePortfolioIntro = {
+export const websitePortfolioIntro: PortfolioIntro = {
   role: "UX/UI Designer",
   tools: "Figma",
   tagline:
     "Landing pages and business websites—marketing sites and retail web apps in one portfolio.",
   overview:
     "Work spans marketing landings, retail dashboards, hospital equipment management, and field-service platforms—responsive layouts with clear tables, forms, and workflows for desktop and smaller screens.",
+  narrative: {
+    problem:
+      "Clients needed both marketing presence and operational web apps—often with dense tables and forms that had to work on desktop and smaller screens without a separate mobile product.",
+    process: [
+      "Structured page types: marketing landings, listing/detail patterns, and admin-style tables",
+      "Designed responsive breakpoints and component reuse across retail, healthcare, and service verticals",
+      "Prototyped key flows (borrow/return, contracts, branch management) before visual polish",
+    ],
+    outcome:
+      "Ship-ready responsive sites and web apps where users complete real tasks—not only browse marketing content.",
+    learnings: [
+      "Landing scroll demos help stakeholders envision marketing pages; operational screens still need table-first layouts tested with real data density.",
+    ],
+  },
 };
 
 export const websitePortfolioSections: RattanaPortfolioProject[] = [

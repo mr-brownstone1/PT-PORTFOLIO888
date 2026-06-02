@@ -1,12 +1,30 @@
 import type { RattanaGalleryImage, RattanaPortfolioProject } from "./rattanaPortfolio";
+import type { PortfolioIntro } from "./caseStudyNarrative";
 
-/** หน้า Project - Inventory Management System */
-export const inventoryPortfolioIntro = {
+/** หน้า Project - Inventory Management System (standalone deep-dive) */
+export const inventoryPortfolioIntro: PortfolioIntro = {
   role: "Freelance System Designer & UX/UI Designer",
   tagline:
     "Stock receiving, inventory tracking, and in-store POS—with franchise support for cross-branch sales.",
   overview:
-    "Inventory and POS for retail—manage stock, purchases, branch performance, and in-store sales with configurable receipts and franchise-ready reporting.",
+    "Inventory and POS for retail—manage stock, purchases, branch performance, and in-store sales with configurable receipts and franchise-ready reporting. This case study expands the inventory + POS work with franchise flows and receipt formats; a shorter version also appears under the RattanaCode_888 freelance overview.",
+  relatedCaseStudy: {
+    href: "/case-study/rattana-code-888",
+    label: "RattanaCode_888 overview",
+    description:
+      "See this project in context with other freelance client work (website, inventory snapshot, Changthai).",
+  },
+  narrative: {
+    problem:
+      "Retail clients needed stock, purchasing, branch reporting, and in-store POS in one system—with receipt formats and franchise rules that varied by branch.",
+    process: [
+      "Structured modules: dashboards, inventory/purchase, POS receipts, and brand tokens",
+      "Designed dense tables and print previews for 80mm receipts and installment sales",
+      "Validated flows for branch performance and returns with stakeholders before handoff",
+    ],
+    outcome:
+      "Staff manage inventory and sales from one admin, print configured receipts at the counter, and compare branch performance—without switching tools for PU, returns, or POS.",
+  },
 };
 
 export const inventoryGalleryImages: RattanaGalleryImage[] = [

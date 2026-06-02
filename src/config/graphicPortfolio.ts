@@ -1,11 +1,23 @@
 import type { RattanaGalleryImage, RattanaPortfolioProject } from "./rattanaPortfolio";
+import type { PortfolioIntro } from "./caseStudyNarrative";
 
-export const graphicPortfolioIntro = {
+export const graphicPortfolioIntro: PortfolioIntro = {
   role: "Graphic Designer",
   tools: "Adobe Illustrator, Photoshop, Figma",
   tagline: "Personas, storyboards, illustrations, posters, and thumbnails.",
   overview:
     "Graphic work by category—from personal and UX research pieces to posters and YouTube thumbnails.",
+  narrative: {
+    problem:
+      "Projects needed visual support beyond UI—personas and storyboards for research, social grids, posters, and click-worthy thumbnails with a consistent voice.",
+    process: [
+      "Explored concepts per channel (UX artifacts, social, print, YouTube)",
+      "Refined typography, color, and layout for legibility at small sizes and in print",
+      "Delivered asset sets ready for dev handoff or marketing upload",
+    ],
+    outcome:
+      "Cohesive graphic sets that support UX storytelling and brand presence across research deliverables and marketing channels.",
+  },
 };
 
 const img = (file: string, alt: string): RattanaGalleryImage => ({

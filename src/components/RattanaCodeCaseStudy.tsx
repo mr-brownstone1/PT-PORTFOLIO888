@@ -1,6 +1,7 @@
 import CaseStudyMockup from "./CaseStudyMockup";
 import RelatedProjectsSection from "./RelatedProjectsSection";
 import ProjectImageGallery from "./ProjectImageGallery";
+import CaseStudyIntroBlock from "./case-study/CaseStudyIntroBlock";
 import {
   CaseStudyBack,
   CaseStudyHero,
@@ -34,6 +35,8 @@ export default function RattanaCodeCaseStudy({
         logoAlt={intro.logoAlt}
       />
       <CaseStudyMeta items={[{ label: "Role", value: intro.role }]} />
+
+      <CaseStudyIntroBlock intro={intro} />
 
       <div className="mt-12 space-y-16 md:mt-14 md:space-y-20">
         {rattanaPortfolioProjects.map((item, index) => (

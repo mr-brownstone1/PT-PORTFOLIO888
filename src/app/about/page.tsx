@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import PageLayout from "@/components/PageLayout";
@@ -16,6 +17,12 @@ import {
   aboutWorkExperience,
 } from "@/config/about";
 import { ArrowRightIcon } from "@/components/icons/outlined";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "UX/UI designer with 4+ years experience—work history, education, tools, and product types.",
+};
 
 export default function AboutPage() {
   return (

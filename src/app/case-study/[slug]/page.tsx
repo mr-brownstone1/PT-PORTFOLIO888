@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PageLayout from "@/components/PageLayout";
 import CaseStudyPage from "@/components/CaseStudyPage";
@@ -8,7 +9,8 @@ import DashboardCaseStudy from "@/components/DashboardCaseStudy";
 import GraphicCaseStudy from "@/components/GraphicCaseStudy";
 import InventoryCaseStudy from "@/components/InventoryCaseStudy";
 import RattanaCodeCaseStudy from "@/components/RattanaCodeCaseStudy";
-import { projects } from "@/config/projects";
+import { getSiteUrl, siteName } from "@/lib/site";
+import { getProjectBySlug, projects } from "@/config/projects";
 
 const caseStudyDetails: Record<
   string,
@@ -58,13 +60,53 @@ function pickSuggestedProjects(currentSlug: string, count = 3) {
   return candidates.slice(0, Math.min(count, candidates.length));
 }
 
+export function generateStaticParams() {
+  return projects.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+  if (!project) return { title: "Project not found" };
+
+  const title = `${project.title} — Case Study`;
+  const description = project.summary;
+  const url = `${getSiteUrl()}/case-study/${slug}`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName,
+      type: "article",
+      images: project.image
+        ? [{ url: project.image, alt: project.title }]
+        : [{ url: "/avatar.png", alt: siteName }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: project.image ? [project.image] : ["/avatar.png"],
+    },
+  };
+}
+
 export default async function CaseStudyRoute({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = getProjectBySlug(slug);
 
   if (!project) notFound();
 
@@ -81,7 +123,7 @@ export default async function CaseStudyRoute({
     );
   }
 
-  if (slug === "payment-system") {
+  if (slug === "accounting-system") {
     return (
       <PageLayout>
         <AccountingCaseStudy
@@ -136,7 +178,7 @@ export default async function CaseStudyRoute({
     );
   }
 
-  if (slug === "bermahadev-website") {
+  if (slug === "inventory-management") {
     return (
       <PageLayout>
         <InventoryCaseStudy

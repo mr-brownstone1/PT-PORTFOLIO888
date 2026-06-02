@@ -3,10 +3,10 @@ import { ArrowRightIcon } from "@/components/icons/outlined";
 import ProjectCarousel from "./ProjectCarousel";
 import SectionHeader from "./SectionHeader";
 import ScrollReveal from "./ScrollReveal";
-import { projects } from "@/config/projects";
+import { getFeaturedProjects } from "@/config/projects";
 
 export default function Projects() {
-  const featured = projects.slice(0, 4);
+  const featured = getFeaturedProjects();
 
   return (
     <section id="projects" className="page-section">

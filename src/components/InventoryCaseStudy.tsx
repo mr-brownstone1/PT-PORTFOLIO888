@@ -1,6 +1,7 @@
 import CaseStudyMockup from "./CaseStudyMockup";
 import RelatedProjectsSection from "./RelatedProjectsSection";
 import ProjectImageGallery from "./ProjectImageGallery";
+import CaseStudyIntroBlock from "./case-study/CaseStudyIntroBlock";
 import {
   CaseStudyBack,
   CaseStudyHero,
@@ -31,9 +32,7 @@ export default function InventoryCaseStudy({
       <CaseStudyHero title={project.title} subtitle={intro.tagline} />
       <CaseStudyMeta items={[{ label: "Role", value: intro.role }]} />
 
-      <p className="mt-6 max-w-xl text-sm leading-relaxed text-kathin-muted sm:text-base">
-        {intro.overview}
-      </p>
+      <CaseStudyIntroBlock intro={intro} />
 
       <div className="mt-12 space-y-16 md:mt-14 md:space-y-20">
         {inventoryPortfolioSections.map((item, index) => (

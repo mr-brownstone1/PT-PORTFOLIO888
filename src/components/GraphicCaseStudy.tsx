@@ -1,5 +1,6 @@
 import RelatedProjectsSection from "./RelatedProjectsSection";
 import ProjectImageGallery from "./ProjectImageGallery";
+import CaseStudyIntroBlock from "./case-study/CaseStudyIntroBlock";
 import {
   CaseStudyBack,
   CaseStudyHero,
@@ -31,13 +32,11 @@ export default function GraphicCaseStudy({
       <CaseStudyMeta
         items={[
           { label: "Role", value: intro.role },
-          { label: "Tools", value: intro.tools },
+          { label: "Tools", value: intro.tools ?? "Figma" },
         ]}
       />
 
-      <p className="mt-6 max-w-xl text-sm leading-relaxed text-kathin-muted sm:text-base">
-        {intro.overview}
-      </p>
+      <CaseStudyIntroBlock intro={intro} />
 
       <div className="mt-12 space-y-16 md:mt-14 md:space-y-20">
         {graphicPortfolioSections.map((item, index) => (

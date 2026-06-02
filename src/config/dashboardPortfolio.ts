@@ -1,11 +1,23 @@
 import type { RattanaGalleryImage, RattanaPortfolioProject } from "./rattanaPortfolio";
+import type { PortfolioIntro } from "./caseStudyNarrative";
 
-export const dashboardPortfolioIntro = {
+export const dashboardPortfolioIntro: PortfolioIntro = {
   role: "UX/UI Designer",
   tools: "Figma",
   tagline: "Admin dashboards—KPI cards, charts, and calendars built for daily ops.",
   overview:
     "Manufacturing, retail sales, tours, and finance—KPI cards and charts built to scan fast.",
+  narrative: {
+    problem:
+      "Operations teams in manufacturing, retail, tours, and finance each needed dashboards—but generic templates buried the metrics they checked every morning.",
+    process: [
+      "Prioritized KPIs and table density per domain (jewelry manufacturing, retail, tour booking, finance)",
+      "Used consistent card, chart, and calendar patterns so new dashboards feel familiar",
+      "Tuned hierarchy for glanceable status before drill-down",
+    ],
+    outcome:
+      "Role-appropriate dashboards that surface the right numbers first—supporting daily decisions without hunting through nested menus.",
+  },
 };
 
 const img = (file: string, alt: string): RattanaGalleryImage => ({

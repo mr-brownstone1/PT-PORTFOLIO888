@@ -1,6 +1,14 @@
 import Link from "next/link";
 import { ChevronLeftIcon } from "@/components/icons/outlined";
 
+export function CaseStudyCallout({ children }: { children: React.ReactNode }) {
+  return (
+    <aside className="mt-6 rounded-[var(--kathin-radius-md)] border border-kathin-border bg-kathin-surface-solid/50 px-4 py-3 text-sm leading-relaxed text-kathin-muted sm:px-5 sm:py-4">
+      {children}
+    </aside>
+  );
+}
+
 export function CaseStudyBack() {
   return (
     <Link

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import IntroSplash from "@/components/IntroSplash";
 import SmoothScroll from "@/components/SmoothScroll";
+import { getSiteUrl, siteDescription, siteName } from "@/lib/site";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 
@@ -19,9 +20,30 @@ const interDisplay = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Suphaphorn | UX/UI Designer",
-  description:
-    "Designing user-friendly systems that solve real problems. UX/UI design case studies and projects.",
+  metadataBase: new URL(getSiteUrl()),
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  icons: {
+    icon: "/avatar.png",
+    apple: "/avatar.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName,
+    title: siteName,
+    description: siteDescription,
+    images: [{ url: "/avatar.png", width: 512, height: 512, alt: siteName }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description: siteDescription,
+    images: ["/avatar.png"],
+  },
 };
 
 export default function RootLayout({

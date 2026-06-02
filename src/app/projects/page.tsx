@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import PageLayout from "@/components/PageLayout";
 import ProjectPortfolioList from "@/components/ProjectPortfolioList";
 import SectionHeader from "@/components/SectionHeader";
 import ScrollReveal from "@/components/ScrollReveal";
 import { projects } from "@/config/projects";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "UX/UI case studies—booking systems, inventory & POS, websites, dashboards, accounting, and graphic design.",
+};
 
 /** โปรเจกต์ที่มีรูป preview ขึ้นก่อน */
 function sortProjectsForPortfolio() {

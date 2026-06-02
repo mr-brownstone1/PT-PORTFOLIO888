@@ -1,6 +1,6 @@
 # SPP UX Portfolio
 
-Portfolio site (Next.js + Tailwind). Layout: sidebar + main content.
+Portfolio site (Next.js + Tailwind). Top navigation, one-page home, and dedicated case study pages.
 
 ## รันโปรเจกต์
 

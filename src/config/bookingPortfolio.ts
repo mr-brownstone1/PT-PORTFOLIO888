@@ -1,12 +1,27 @@
 import type { RattanaGalleryImage, RattanaPortfolioProject } from "./rattanaPortfolio";
+import type { PortfolioIntro } from "./caseStudyNarrative";
 
 /** เนื้อหาเฉพาะหน้า Project - Booking System */
-export const bookingPortfolioIntro = {
+export const bookingPortfolioIntro: PortfolioIntro = {
   role: "UX/UI Designer",
   tagline:
     "Tour booking platform—customer website plus two back-office systems for B2C sales and tour operations.",
   overview:
     "One connected ecosystem: travelers book on the public website, while teams run direct web sales (products, checkout, payments) and fulfill reservations from other platforms (grouping, departures, guides) in separate admin experiences.",
+  narrative: {
+    problem:
+      "A tour operator needed one brand experience online, but sales and operations worked differently—direct website bookings vs. reservations from OTAs and agents—with separate workflows for products, payments, grouping, and guides.",
+    process: [
+      "Defined three surfaces: public website, B2C product/booking admin, and tour-operations admin tied to the same product catalog",
+      "Designed multi-step product creation, booking lists, seller setup, vehicle grouping, check-in, and guide management",
+      "Aligned visual patterns across admins while keeping each role’s tasks scannable under daily load",
+    ],
+    outcome:
+      "Teams publish tours and take direct payments on their own site, while operations staff fulfill third-party bookings—grouping passengers, assigning vehicles, and managing check-in—from a dedicated back office without mixing B2C setup screens.",
+    learnings: [
+      "Splitting B2C merchandising from ops fulfillment reduced clutter; shared product data still needed explicit mapping to external sellers.",
+    ],
+  },
 };
 
 export const bookingPortfolioSections: RattanaPortfolioProject[] = [

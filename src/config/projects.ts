@@ -20,6 +20,14 @@ export type Project = {
   systemTypes?: SystemTypeSlug[];
 };
 
+/** โปรเจกต์ที่แสดงบนหน้าแรก (carousel) — เรียงตามลำดับนี้ */
+export const featuredProjectSlugs = [
+  "booking-system",
+  "landing-page-website",
+  "inventory-management",
+  "dashboard",
+] as const;
+
 export const projects: Project[] = [
   {
     slug: "rattana-code-888",
@@ -37,10 +45,10 @@ export const projects: Project[] = [
     summary:
       "Tour booking ecosystem—customer website, B2C booking admin, and tour operations admin.",
     image: "/projects/booking-system.png",
-    systemTypes: ["software-for-business", "admin-system"],
+    systemTypes: ["software-for-business", "admin-system", "travel-system"],
   },
   {
-    slug: "bermahadev-website",
+    slug: "inventory-management",
     title: "Inventory Management System",
     category: "System Design",
     summary:
@@ -49,7 +57,7 @@ export const projects: Project[] = [
     systemTypes: ["stock-inventory", "pos", "admin-system"],
   },
   {
-    slug: "payment-system",
+    slug: "accounting-system",
     title: "Accounting System",
     category: "System Design",
     summary:
@@ -83,8 +91,19 @@ export const projects: Project[] = [
     summary:
       "Visual design for brands—logos, social assets, posters, and marketing materials with a consistent look and feel.",
     lottie: "/projects/graphic-preview.lottie",
+    systemTypes: ["website-design"],
   },
 ];
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return projects.find((p) => p.slug === slug);
+}
+
+export function getFeaturedProjects(): Project[] {
+  return featuredProjectSlugs
+    .map((slug) => getProjectBySlug(slug))
+    .filter((p): p is Project => p !== undefined);
+}
 
 /** โปรเจกต์แยกตามประเภทระบบ (สำหรับ section ตามหมวดหมู่) */
 export function getProjectsBySystemType(slug: SystemTypeSlug): Project[] {
