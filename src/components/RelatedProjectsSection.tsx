@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import RelatedProjectCard from "./RelatedProjectCard";
 import type { Project } from "@/config/projects";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 type Props = {
   projects: Project[];
@@ -11,6 +14,7 @@ export default function RelatedProjectsSection({
   projects,
   max = 3,
 }: Props) {
+  const { t } = useLocale();
   const items = projects.slice(0, max);
   if (items.length === 0) return null;
 
@@ -19,17 +23,17 @@ export default function RelatedProjectsSection({
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-wider text-kathin-muted">
-            Explore more
+            {t.caseStudy.exploreMore}
           </p>
           <h2 className="mt-1 font-display text-lg font-semibold text-kathin-text sm:text-xl">
-            More case studies
+            {t.caseStudy.moreCases}
           </h2>
         </div>
         <Link
           href="/projects"
           className="text-xs font-medium text-kathin-muted transition hover:text-[var(--kathin-orange)]"
         >
-          View all projects →
+          {t.caseStudy.viewAll}
         </Link>
       </div>
 

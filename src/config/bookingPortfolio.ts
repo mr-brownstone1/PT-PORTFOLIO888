@@ -5,22 +5,22 @@ import type { PortfolioIntro } from "./caseStudyNarrative";
 export const bookingPortfolioIntro: PortfolioIntro = {
   role: "UX/UI Designer",
   tagline:
-    "Tour booking platform—customer website plus two back-office systems for B2C sales and tour operations.",
-  overview:
-    "One connected ecosystem: travelers book on the public website, while teams run direct web sales (products, checkout, payments) and fulfill reservations from other platforms (grouping, departures, guides) in separate admin experiences.",
+    "Tour booking — customer website, sales admin, and trip operations admin.",
+  highlights: [
+    "Public booking website",
+    "Sales & checkout admin",
+    "Trip operations admin",
+  ],
   narrative: {
     problem:
-      "A tour operator needed one brand experience online, but sales and operations worked differently—direct website bookings vs. reservations from OTAs and agents—with separate workflows for products, payments, grouping, and guides.",
+      "Sales and ops work differently — direct web bookings vs. OTA/agent trips — but share the same tour catalog.",
     process: [
-      "Defined three surfaces: public website, B2C product/booking admin, and tour-operations admin tied to the same product catalog",
-      "Designed multi-step product creation, booking lists, seller setup, vehicle grouping, check-in, and guide management",
-      "Aligned visual patterns across admins while keeping each role’s tasks scannable under daily load",
+      "Split into three parts on one catalog",
+      "Designed sales and ops flows separately",
+      "Kept each screen easy to scan day to day",
     ],
     outcome:
-      "Teams publish tours and take direct payments on their own site, while operations staff fulfill third-party bookings—grouping passengers, assigning vehicles, and managing check-in—from a dedicated back office without mixing B2C setup screens.",
-    learnings: [
-      "Splitting B2C merchandising from ops fulfillment reduced clutter; shared product data still needed explicit mapping to external sellers.",
-    ],
+      "Teams sell on their site and run third-party bookings without mixing screens.",
   },
 };
 
@@ -29,8 +29,7 @@ export const bookingPortfolioSections: RattanaPortfolioProject[] = [
     id: "website",
     title: "Website",
     category: "Customer-facing",
-    summary:
-      "Public site for tour programs and packages—browse activities, compare pricing, and submit inquiries or bookings without calling the office.",
+    summary: "Browse tours, compare prices, and book without calling the office.",
     images: [
       {
         src: "/projects/booking/website/01-home-explore-thailand.png",
@@ -63,7 +62,7 @@ export const bookingPortfolioSections: RattanaPortfolioProject[] = [
     title: "B2C Booking Management",
     category: "Back office · B2C",
     summary:
-      "Back office for direct sales on your own website—create tour products, publish them to the public site, and manage the full flow from browsing and selection through checkout and payment recording.",
+      "Create and publish products; manage bookings from browse through payment.",
     images: [
       {
         src: "/projects/booking/b2c/01-login.png",
@@ -100,7 +99,7 @@ export const bookingPortfolioSections: RattanaPortfolioProject[] = [
     title: "Tour Operations Management",
     category: "Back office · Operations",
     summary:
-      "Operations hub for bookings imported from other platforms (OTAs, agents, partners)—linked to products already in the system. When reservations arrive, teams manage them here: group passengers, schedule departures, and assign guides.",
+      "Fulfill OTA/agent bookings—group passengers, departures, check-in, and guides.",
     images: [
       {
         src: "/projects/booking/operations/01-create-program.png",

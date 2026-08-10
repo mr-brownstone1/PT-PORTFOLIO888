@@ -4,19 +4,22 @@ import type { PortfolioIntro } from "./caseStudyNarrative";
 export const dashboardPortfolioIntro: PortfolioIntro = {
   role: "UX/UI Designer",
   tools: "Figma",
-  tagline: "Admin dashboards—KPI cards, charts, and calendars built for daily ops.",
-  overview:
-    "Manufacturing, retail sales, tours, and finance—KPI cards and charts built to scan fast.",
+  tagline: "Admin dashboards — KPI cards, charts, and calendars for daily work.",
+  highlights: [
+    "Manufacturing & retail KPIs",
+    "Tour ops & booking views",
+    "Finance overview",
+  ],
   narrative: {
     problem:
-      "Operations teams in manufacturing, retail, tours, and finance each needed dashboards—but generic templates buried the metrics they checked every morning.",
+      "Ops teams needed dashboards that fit their work — generic templates hid the morning numbers.",
     process: [
-      "Prioritized KPIs and table density per domain (jewelry manufacturing, retail, tour booking, finance)",
-      "Used consistent card, chart, and calendar patterns so new dashboards feel familiar",
-      "Tuned hierarchy for glanceable status before drill-down",
+      "Pick the right KPIs per domain",
+      "Reuse card, chart, and calendar patterns",
+      "Show status first, details second",
     ],
     outcome:
-      "Role-appropriate dashboards that surface the right numbers first—supporting daily decisions without hunting through nested menus.",
+      "Dashboards that put the useful numbers up front for daily decisions.",
   },
 };
 

@@ -1,8 +1,9 @@
-import CaseStudyMockup from "./CaseStudyMockup";
+"use client";
+
 import MacBookScrollDemo from "./MacBookScrollDemo";
 import RelatedProjectsSection from "./RelatedProjectsSection";
-import ProjectImageGallery from "./ProjectImageGallery";
 import CaseStudyIntroBlock from "./case-study/CaseStudyIntroBlock";
+import CaseStudyWorkSection from "./case-study/CaseStudyWorkSection";
 import {
   CaseStudyBack,
   CaseStudyHero,
@@ -15,6 +16,11 @@ import {
   websitePortfolioSections,
 } from "@/config/websitePortfolio";
 import type { Project } from "@/config/projects";
+import { useLocale } from "@/i18n/LocaleProvider";
+import {
+  localizeIntro,
+  localizeSections,
+} from "@/i18n/content/portfolios";
 
 type Props = {
   project: Project;
@@ -25,84 +31,54 @@ export default function WebsiteCaseStudy({
   project,
   suggestedProjects,
 }: Props) {
-  const intro = websitePortfolioIntro;
+  const { locale, t } = useLocale();
+  const slug = "landing-page-website";
+  const intro = localizeIntro(slug, websitePortfolioIntro, locale);
+  const sections = localizeSections(slug, websitePortfolioSections, locale);
   const mac = websiteLandingMacDemo;
 
   return (
-    <article className="page-container max-w-3xl py-10 pb-24 md:py-14 md:pb-28">
+    <article className="page-container max-w-4xl py-10 pb-24 md:py-14 md:pb-28">
       <CaseStudyBack />
       <CaseStudyTags tags={["Website Design", "Responsive", "UX/UI"]} />
       <CaseStudyHero title={project.title} subtitle={intro.tagline} />
       <CaseStudyMeta
         items={[
-          { label: "Role", value: intro.role },
-          { label: "Tools", value: intro.tools ?? "Figma" },
+          { label: t.caseStudy.role, value: intro.role },
+          { label: t.caseStudy.tools, value: intro.tools ?? "Figma" },
         ]}
       />
 
       <CaseStudyIntroBlock intro={intro} />
 
-      <div className="mt-12 space-y-16 md:mt-14 md:space-y-20">
-        <article className="border-t border-kathin-border pt-12 first:border-t-0 first:pt-0 md:pt-14">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="font-display text-sm font-semibold tabular-nums text-[var(--kathin-orange)]">
-              01
-            </span>
-            <span className="text-xs font-medium text-kathin-muted">
-              {mac.category}
-            </span>
-          </div>
-
-          <h2 className="mt-3 font-display text-xl font-semibold leading-snug text-kathin-text sm:text-2xl">
-            {mac.title}
-          </h2>
-
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-kathin-muted sm:text-base">
-            {mac.summary}
-          </p>
-
-          <div className="relative left-1/2 mt-8 w-[min(100vw-2rem,56rem)] max-w-4xl -translate-x-1/2 md:mt-10">
+      <div className="mt-10 space-y-12 md:mt-12 md:space-y-14">
+        <CaseStudyWorkSection
+          item={{
+            id: mac.id,
+            title: mac.title,
+            category: mac.category,
+            summary:
+              locale === "th"
+                ? "Landing page หลังขาย — hero, features, ราคา, ติดต่อ เลื่อนดูทั้งหน้าใน MacBook ได้"
+                : mac.summary,
+          }}
+          index={1}
+        >
+          <div className="relative left-1/2 mt-5 w-[min(100vw-2rem,56rem)] max-w-4xl -translate-x-1/2 md:mt-6">
             <MacBookScrollDemo
               frameSrc={mac.frame}
               contentSrc={mac.screenshot}
               contentAlt={mac.alt}
             />
           </div>
-        </article>
+        </CaseStudyWorkSection>
 
-        {websitePortfolioSections.map((item, index) => (
-          <article
+        {sections.map((item, index) => (
+          <CaseStudyWorkSection
             key={item.id}
-            className="border-t border-kathin-border pt-12 md:pt-14"
-          >
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="font-display text-sm font-semibold tabular-nums text-[var(--kathin-orange)]">
-                {String(index + 2).padStart(2, "0")}
-              </span>
-              <span className="text-xs font-medium text-kathin-muted">
-                {item.category}
-              </span>
-            </div>
-
-            <h2 className="mt-3 font-display text-xl font-semibold leading-snug text-kathin-text sm:text-2xl">
-              {item.title}
-            </h2>
-
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-kathin-muted sm:text-base">
-              {item.summary}
-            </p>
-
-            {item.images && item.images.length > 0 ? (
-              <ProjectImageGallery images={item.images} title={item.title} />
-            ) : item.image ? (
-              <CaseStudyMockup
-                src={item.image}
-                alt={item.title}
-                className="mt-6"
-                prominent
-              />
-            ) : null}
-          </article>
+            item={item}
+            index={index + 2}
+          />
         ))}
       </div>
 

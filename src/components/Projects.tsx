@@ -6,6 +6,7 @@ import { ArrowRightIcon } from "@/components/icons/outlined";
 import SectionHeader from "./SectionHeader";
 import ScrollReveal from "./ScrollReveal";
 import { getFeaturedProjects } from "@/config/projects";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 const ProjectCarousel = dynamic(() => import("./ProjectCarousel"), {
   ssr: false,
@@ -16,15 +17,16 @@ const ProjectCarousel = dynamic(() => import("./ProjectCarousel"), {
 
 export default function Projects() {
   const featured = getFeaturedProjects();
+  const { t } = useLocale();
 
   return (
     <section id="projects" className="page-section">
       <div className="page-container">
         <ScrollReveal>
           <SectionHeader
-            eyebrow="Projects"
-            title="Featured Work"
-            description="Selected UX/UI and product design — from research and flows to polished interfaces."
+            eyebrow={t.featured.eyebrow}
+            title={t.featured.title}
+            description={t.featured.description}
           />
         </ScrollReveal>
       </div>
@@ -34,7 +36,7 @@ export default function Projects() {
           href="/projects"
           className="btn btn-outline hover-lift px-6 py-3"
         >
-          View all projects
+          {t.featured.viewAll}
           <ArrowRightIcon size="sm" />
         </Link>
       </div>

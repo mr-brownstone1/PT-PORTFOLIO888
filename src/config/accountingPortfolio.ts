@@ -5,22 +5,22 @@ export const accountingPortfolioIntro: PortfolioIntro = {
   role: "UX/UI Designer",
   tools: "Figma",
   tagline:
-    "Company accounting—income, expenses, and finance documents in one admin.",
-  overview:
-    "Accounting V.1 supports day-to-day company finances: overview dashboards for amounts owed and paid, lists that tie cost to revenue, invoices and other collection documents, bill preview before printing, and role-based access so each team sees only what they need.",
+    "Company accounting in one admin — income, expenses, and finance docs.",
+  highlights: [
+    "Finance overview & lists",
+    "Invoices & print preview",
+    "Role-based access",
+  ],
   narrative: {
     problem:
-      "Finance and operations teams were tracking income, expenses, and documents across spreadsheets and disconnected tools—slow to reconcile and hard to control who could see sensitive figures.",
+      "Income, expenses, and docs lived in spreadsheets — slow to check and hard to control who sees what.",
     process: [
-      "Mapped core flows: login, financial overview, invoice creation, document preview, and permission setup",
-      "Structured dense tables and summary cards so owed vs. paid amounts scan quickly",
-      "Designed print-ready bill layouts and role-based access before development handoff",
+      "Login → overview → invoices",
+      "Tables and cards for owed vs. paid",
+      "Print-ready bills and permissions",
     ],
     outcome:
-      "A single admin where staff manage lists, create invoices, preview documents before print, and assign access by role—reducing context switching and keeping finance data in one place.",
-    learnings: [
-      "Permission screens need the same clarity as customer-facing flows—ambiguous access rules create support load later.",
-    ],
+      "One admin for lists, invoices, previews, and who can access what.",
   },
 };
 
@@ -34,8 +34,7 @@ export const accountingPortfolioSections: RattanaPortfolioProject[] = [
     id: "overview",
     title: "Finance overview",
     category: "Dashboard & lists",
-    summary:
-      "Login, summary dashboard, and main list tying cost, revenue, and profit so teams see financial health at a glance.",
+    summary: "Login, summary dashboard, and cost/revenue/profit lists.",
     images: [
       img("01-cover.png", "Accounting V.1 — overview dashboard mockup"),
       img("02-login.png", "Login screen"),
@@ -46,8 +45,7 @@ export const accountingPortfolioSections: RattanaPortfolioProject[] = [
     id: "documents",
     title: "Invoices & collection documents",
     category: "Documents",
-    summary:
-      "Create invoices with line items and preview other collection documents before printing.",
+    summary: "Create invoices and preview collection docs before print.",
     images: [
       img("04-create-invoice.png", "Create invoice — debtor info and line items"),
       img(
@@ -60,8 +58,7 @@ export const accountingPortfolioSections: RattanaPortfolioProject[] = [
     id: "access",
     title: "Role-based access",
     category: "Settings",
-    summary:
-      "Configure who can view or edit modules—keeping sensitive finance data limited to the right roles.",
+    summary: "Who can view or edit—sensitive finance data by role.",
     images: [img("05-access-rights.png", "System access permissions form")],
   },
 ];

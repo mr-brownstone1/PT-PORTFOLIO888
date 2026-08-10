@@ -24,27 +24,32 @@ export const rattanaPortfolioIntro: PortfolioIntro & {
 } = {
   role: "Freelance System Designer & UX/UI Designer",
   tagline:
-    "Custom systems and websites for SMEs—inventory, POS, booking, and brand sites.",
+    "Systems and websites for SMEs — inventory, POS, CRM, installments, number entry, booking, and brand sites.",
   logo: "/projects/rattana-code-888-logo.png",
   logoAlt: "RattanaCode_888",
-  overview:
-    "Freelance practice spanning inventory/POS, brand websites, and cultural tourism sites—each tailored to how the client sells and operates day to day.",
+  highlights: [
+    "Inventory & POS",
+    "CRM (Sheets & Drive)",
+    "Finance & installments",
+    "Number entry & results",
+    "Brand websites",
+    "Tour / activity sites",
+  ],
   relatedCaseStudy: {
     href: "/case-study/inventory-management",
     label: "Inventory Management System",
-    description:
-      "Deep-dive case study with franchise POS flows, purchase/return screens, and receipt formats.",
+    description: "Closer look: franchise POS, purchase/returns, and receipts.",
   },
   narrative: {
     problem:
-      "SME clients needed affordable custom software and sites—not off-the-shelf templates—with workflows that matched how they already ran inventory, sales, or content.",
+      "SME clients needed custom tools and sites that fit how they already work — not generic templates.",
     process: [
-      "Scoped each engagement: discovery, IA, UI, and handoff aligned to dev capacity",
-      "Reused patterns across projects while keeping brand and domain logic distinct",
-      "Delivered admin and customer surfaces with clear hierarchy for non-technical users",
+      "Talk through the brief and set the scope",
+      "Structure, UI, and reusable patterns",
+      "Handoff for admin and customer screens",
     ],
     outcome:
-      "Production-ready systems and sites clients use daily—inventory/POS, consultation websites, and tourism programs—under one freelance practice.",
+      "Systems and sites clients use every day — under one freelance practice.",
   },
 };
 
@@ -57,11 +62,86 @@ export const rattanaPortfolioProjects: RattanaPortfolioProject[] = [
     images: inventoryGalleryImages,
   },
   {
+    id: "number-entry",
+    title: "Number Entry & Period Results",
+    category: "System Design",
+    summary:
+      "Back office to key numbers, set limits, check period totals, and pull results from a central site.",
+    images: [
+      {
+        src: "/projects/rattana/number-entry/01-dashboard-overview.png",
+        alt: "Back office dashboard — today’s totals and shortcuts",
+      },
+      {
+        src: "/projects/rattana/number-entry/02-period-report.png",
+        alt: "Period report — entries, matched/unmatched, and net settlement",
+      },
+      {
+        src: "/projects/rattana/number-entry/03-results-sync.png",
+        alt: "Period results — select draw and sync from central source",
+      },
+    ],
+  },
+  {
+    id: "member-credit",
+    title: "Finance & Installment Management",
+    category: "System Design",
+    summary:
+      "Installment finance admin — daily collections, outstanding balances, contracts, and overview.",
+    images: [
+      {
+        src: "/projects/rattana/member-credit/01-daily-collections.png",
+        alt: "Daily payments — due today, collected, and pending installments",
+      },
+      {
+        src: "/projects/rattana/member-credit/02-outstanding-balances.png",
+        alt: "Outstanding balances — overdue and inactive installment totals",
+      },
+      {
+        src: "/projects/rattana/member-credit/03-service-agreements.png",
+        alt: "Installment contracts — principal, fees, paid, and remaining",
+      },
+      {
+        src: "/projects/rattana/member-credit/04-business-overview.png",
+        alt: "Finance overview — working capital, fees collected, and portfolio status",
+      },
+    ],
+  },
+  {
+    id: "crm-sheets",
+    title: "Studio CRM — Sheets & Drive",
+    category: "System Design",
+    summary:
+      "Studio CRM — customer profiles, visit history, and bookings. Saves to Google Sheets; photos go to Google Drive.",
+    images: [
+      {
+        src: "/projects/rattana/crm-sheets/01-login.png",
+        alt: "Login — studio CRM sign-in",
+      },
+      {
+        src: "/projects/rattana/crm-sheets/02-customer-home.png",
+        alt: "Customers home — new vs returning customer",
+      },
+      {
+        src: "/projects/rattana/crm-sheets/03-customer-list.png",
+        alt: "Customer list — search by phone and visit history",
+      },
+      {
+        src: "/projects/rattana/crm-sheets/04-customer-profile.png",
+        alt: "Customer profile — service notes and visit log",
+      },
+      {
+        src: "/projects/rattana/crm-sheets/05-new-booking.png",
+        alt: "New booking — date, time, and service type",
+      },
+    ],
+  },
+  {
     id: "bermahadev",
     title: "Bermahadev Website",
     category: "Website Design",
     summary:
-      "Fortune-telling and lucky-number consultation site, with an admin panel to manage articles and content.",
+      "Consultation site with article admin — prediction flows and brand pages.",
     images: [
       {
         src: "/projects/rattana/bermahadev/01-hero-predict.png",
@@ -101,8 +181,7 @@ export const rattanaPortfolioProjects: RattanaPortfolioProject[] = [
     id: "changthai",
     title: "Changthai Thappraya Website",
     category: "Website Design",
-    summary:
-      "Tour activity catalog with clear pricing so visitors can browse programs and compare options.",
+    summary: "Tour activity site with clear pricing and easy program details.",
     images: [
       {
         src: "/projects/rattana/changthai/01-device-mockup.png",

@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ChevronLeftIcon } from "@/components/icons/outlined";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 export function CaseStudyCallout({ children }: { children: React.ReactNode }) {
   return (
@@ -10,13 +13,15 @@ export function CaseStudyCallout({ children }: { children: React.ReactNode }) {
 }
 
 export function CaseStudyBack() {
+  const { t } = useLocale();
+
   return (
     <Link
       href="/projects"
       className="inline-flex items-center gap-2 text-sm font-medium text-kathin-muted transition hover:text-kathin-text"
     >
       <ChevronLeftIcon size="sm" />
-      Back to projects
+      {t.caseStudy.back}
     </Link>
   );
 }

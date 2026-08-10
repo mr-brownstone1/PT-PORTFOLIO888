@@ -5,25 +5,27 @@ import type { PortfolioIntro } from "./caseStudyNarrative";
 export const inventoryPortfolioIntro: PortfolioIntro = {
   role: "Freelance System Designer & UX/UI Designer",
   tagline:
-    "Stock receiving, inventory tracking, and in-store POS—with franchise support for cross-branch sales.",
-  overview:
-    "Inventory and POS for retail—manage stock, purchases, branch performance, and in-store sales with configurable receipts and franchise-ready reporting. This case study expands the inventory + POS work with franchise flows and receipt formats; a shorter version also appears under the RattanaCode_888 freelance overview.",
+    "Receive stock, track inventory, and sell in-store with POS — including multi-branch franchise use.",
+  highlights: [
+    "Branch dashboards & reports",
+    "Inventory & purchase flows",
+    "POS receipts (incl. 80mm)",
+  ],
   relatedCaseStudy: {
     href: "/case-study/rattana-code-888",
     label: "RattanaCode_888 overview",
-    description:
-      "See this project in context with other freelance client work (website, inventory snapshot, Changthai).",
+    description: "See this next to other freelance client work.",
   },
   narrative: {
     problem:
-      "Retail clients needed stock, purchasing, branch reporting, and in-store POS in one system—with receipt formats and franchise rules that varied by branch.",
+      "Retail needed stock, purchasing, branch reports, and POS in one place — with receipts and rules that differ by branch.",
     process: [
-      "Structured modules: dashboards, inventory/purchase, POS receipts, and brand tokens",
-      "Designed dense tables and print previews for 80mm receipts and installment sales",
-      "Validated flows for branch performance and returns with stakeholders before handoff",
+      "Set up modules and brand look",
+      "Dense tables + receipt print previews",
+      "Walked returns and branch flows with the client",
     ],
     outcome:
-      "Staff manage inventory and sales from one admin, print configured receipts at the counter, and compare branch performance—without switching tools for PU, returns, or POS.",
+      "One admin for inventory and sales — receipts at the counter, branch results easy to see.",
   },
 };
 
@@ -72,8 +74,7 @@ export const inventoryPortfolioSections: RattanaPortfolioProject[] = [
     id: "dashboard",
     title: "Dashboard & Reports",
     category: "Back office",
-    summary:
-      "Login, branch dashboards, and profit/loss reporting—see performance across locations at a glance.",
+    summary: "Login, branch dashboards, and profit/loss at a glance.",
     images: [
       { src: "/projects/rattana/inventory/01-login.png", alt: "Login screen" },
       {
@@ -90,8 +91,7 @@ export const inventoryPortfolioSections: RattanaPortfolioProject[] = [
     id: "inventory",
     title: "Inventory & Purchase",
     category: "Stock management",
-    summary:
-      "Receive stock, process returns, and create purchases (PU) with barcode search and line-item entry.",
+    summary: "Returns, purchases (PU), and barcode line-item entry.",
     images: [
       {
         src: "/projects/rattana/inventory/03-product-return.png",
@@ -107,8 +107,7 @@ export const inventoryPortfolioSections: RattanaPortfolioProject[] = [
     id: "pos",
     title: "POS & Receipts",
     category: "In-store sales",
-    summary:
-      "Bill settings, print preview, and receipt layouts for cash and installment sales—including compact 80mm formats.",
+    summary: "Bill settings and receipt layouts—cash, installment, 80mm.",
     images: [
       {
         src: "/projects/rattana/inventory/05-bill-settings.png",
@@ -132,8 +131,7 @@ export const inventoryPortfolioSections: RattanaPortfolioProject[] = [
     id: "brand",
     title: "Brand",
     category: "Design system",
-    summary:
-      "Color system and typography for a consistent look across admin and POS touchpoints.",
+    summary: "Colors and type for admin and POS.",
     image: "/projects/rattana/inventory/10-brand-colors.png",
   },
 ];

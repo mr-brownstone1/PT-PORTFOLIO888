@@ -133,7 +133,9 @@ export default function ProjectCarousel({ projects }: Props) {
             {projects.map((project, i) => (
               <div
                 key={project.slug}
-                className="w-[min(740px,88vw)] shrink-0 sm:w-[min(800px,80vw)] lg:w-[min(860px,74vw)]"
+                className={`w-[min(740px,88vw)] shrink-0 transition-transform duration-500 sm:w-[min(800px,80vw)] lg:w-[min(900px,76vw)] ${
+                  i === index ? "z-[1]" : "z-0"
+                }`}
               >
                 <FeaturedProjectCard
                   project={project}

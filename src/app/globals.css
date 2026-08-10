@@ -61,6 +61,13 @@ html {
   overflow-x: clip;
 }
 
+/* Thai: avoid mid-syllable wrapping that looks “cut off” */
+html[lang="th"] body {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  line-break: loose;
+}
+
 /* Smaller corner radius on phones — glass frames fit narrow screens */
 @media (max-width: 639px) {
   :root {
@@ -420,6 +427,30 @@ html.intro-splash-active body {
     pointer-events: none;
   }
 
+  .hero-cursor-glow {
+    --hero-mx: 28%;
+    --hero-my: 32%;
+  }
+
+  .hero-cursor-glow::after {
+    content: "";
+    position: absolute;
+    left: var(--hero-mx);
+    top: var(--hero-my);
+    z-index: -1;
+    width: min(22rem, 70vw);
+    height: min(16rem, 45vh);
+    translate: -50% -50%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 87, 34, 0.2) 0%,
+      rgba(255, 143, 26, 0.06) 42%,
+      transparent 68%
+    );
+    pointer-events: none;
+    transition: left 0.35s ease-out, top 0.35s ease-out;
+  }
+
   @media (prefers-color-scheme: dark) {
     .hero-glow::before {
       background: radial-gradient(
@@ -428,6 +459,21 @@ html.intro-splash-active body {
         rgba(255, 143, 26, 0.1) 45%,
         transparent 72%
       );
+    }
+
+    .hero-cursor-glow::after {
+      background: radial-gradient(
+        circle,
+        rgba(255, 87, 34, 0.28) 0%,
+        rgba(255, 143, 26, 0.08) 42%,
+        transparent 68%
+      );
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cursor-glow::after {
+      display: none;
     }
   }
 
@@ -480,12 +526,71 @@ html.intro-splash-active body {
     .bento-icon-float {
       animation: none;
     }
+    .about-avatar {
+      animation: none;
+    }
   }
 
   @media (prefers-reduced-motion: no-preference) {
     .bento-icon-float {
       animation: bento-icon-float 4s ease-in-out infinite;
     }
+    .about-avatar {
+      animation: about-avatar-float 4.5s ease-in-out infinite;
+    }
+  }
+
+  .about-avatar-wrap {
+    isolation: isolate;
+  }
+
+  .about-avatar-ring {
+    pointer-events: none;
+    position: absolute;
+    inset: -4px;
+    border-radius: 9999px;
+    background: radial-gradient(
+      circle,
+      rgba(255, 87, 34, 0.45) 0%,
+      rgba(255, 87, 34, 0.12) 45%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 0;
+  }
+
+  .about-avatar-wrap:hover .about-avatar-ring {
+    opacity: 1;
+  }
+
+  @keyframes about-avatar-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  .about-timeline-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 9999px;
+    background: var(--kathin-orange);
+    box-shadow:
+      0 0 0 3px rgba(255, 87, 34, 0.2),
+      0 0 16px rgba(255, 87, 34, 0.35);
+  }
+
+  .about-timeline-line {
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 87, 34, 0.45),
+      rgba(255, 255, 255, 0.08)
+    );
   }
 
   .bento-emoji {

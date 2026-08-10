@@ -34,7 +34,7 @@ export const projects: Project[] = [
     title: "RattanaCode_888",
     category: "System Design",
     summary:
-      "Freelance practice delivering custom systems and websites—inventory, POS, booking, and brand sites.",
+      "Freelance systems and websites for SMEs — inventory, POS, CRM, installments, number entry, booking, and brand sites.",
     image: "/projects/rattana-code-888.png",
     systemTypes: ["software-for-business", "admin-system"],
   },
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     title: "Booking System",
     category: "System Design",
     summary:
-      "Tour booking ecosystem—customer website, B2C booking admin, and tour operations admin.",
+      "Tour booking in one place — customer website, sales admin, and trip operations admin.",
     image: "/projects/booking-system.png",
     systemTypes: ["software-for-business", "admin-system", "travel-system"],
   },
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     title: "Inventory Management System",
     category: "System Design",
     summary:
-      "Stock receiving, inventory tracking, and in-store POS—with franchise support for cross-branch sales.",
+      "Receive stock, track inventory, and sell in-store with POS — including multi-branch franchise use.",
     lottie: "/projects/inventory-preview.lottie",
     systemTypes: ["stock-inventory", "pos", "admin-system"],
   },
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     title: "Accounting System",
     category: "System Design",
     summary:
-      "Company income and expense accounting—invoices, documents, and role-based access in one admin.",
+      "Company income and expenses in one admin — invoices, documents, and role-based access.",
     lottie: "/projects/accounting-preview.lottie",
     image: "/projects/accounting-system.png",
     systemTypes: ["accounting-system", "admin-system"],
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     title: "Website",
     category: "Client Project (Web)",
     summary:
-      "Landing pages and business web apps—responsive marketing sites plus retail dashboards, POS, and inventory.",
+      "Marketing landings and business web apps — plus retail dashboards, POS, and inventory screens.",
     image: "/projects/website/card-preview.png",
     systemTypes: ["website-design"],
   },
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     title: "Dashboard",
     category: "UX/UI Design",
     summary:
-      "Admin and analytics dashboards for operations—data density, scannability, and role-based views that teams use every day.",
+      "Admin dashboards for daily ops — clear numbers, easy to scan, views by role.",
     lottie: "/projects/dashboard-preview.lottie",
     systemTypes: ["admin-system"],
   },
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     title: "Graphic Design",
     category: "Graphic Design",
     summary:
-      "Visual design for brands—logos, social assets, posters, and marketing materials with a consistent look and feel.",
+      "Brand visuals — logos, social posts, posters, and promo pieces in one look.",
     lottie: "/projects/graphic-preview.lottie",
     systemTypes: ["website-design"],
   },

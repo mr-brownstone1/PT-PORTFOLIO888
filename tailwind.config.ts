@@ -9,8 +9,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-inter-display)", "var(--font-inter)", "system-ui", "sans-serif"],
+        sans: [
+          "var(--font-inter)",
+          "var(--font-thai)",
+          "system-ui",
+          "sans-serif",
+        ],
+        display: [
+          "var(--font-inter-display)",
+          "var(--font-inter)",
+          "var(--font-thai)",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       colors: {
         kathin: {

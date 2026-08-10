@@ -2,8 +2,11 @@
 
 import ContactButtonWithModal from "./ContactButtonWithModal";
 import ScrollReveal from "./ScrollReveal";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 export default function Contact() {
+  const { t } = useLocale();
+
   return (
     <section id="contact" className="page-section">
       <div className="page-container">
@@ -12,14 +15,14 @@ export default function Contact() {
             <div className="relative flex flex-col md:flex-row md:items-center">
               <div className="relative z-10 flex flex-1 flex-col justify-center px-5 py-10 sm:px-10 sm:py-14 md:px-12 md:py-14 md:pr-8 lg:px-14 lg:py-16 lg:pr-10">
                 <h2 className="font-display text-[clamp(1.75rem,5vw,2.75rem)] font-bold leading-tight text-kathin-text">
-                  Let&apos;s Connect
+                  {t.contact.title}
                 </h2>
                 <p className="mt-4 max-w-md text-sm sm:text-base leading-relaxed text-kathin-muted md:text-lg">
-                  Open to full-time UX/UI roles, freelance work, and design projects.
+                  {t.contact.body}
                 </p>
                 <div className="btn-row mt-6 sm:mt-8">
                   <ContactButtonWithModal className="btn btn-accent hover-lift px-7 py-3.5 text-[0.9375rem]">
-                    Connect
+                    {t.contact.cta}
                   </ContactButtonWithModal>
                 </div>
               </div>

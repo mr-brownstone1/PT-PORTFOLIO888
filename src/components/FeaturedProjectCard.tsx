@@ -1,11 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRightIcon } from "@/components/icons/outlined";
 import ProjectCardPreview from "./ProjectCardPreview";
 import type { Project } from "@/config/projects";
+import { useLocale } from "@/i18n/LocaleProvider";
+import {
+  getProjectCategory,
+  getProjectSummary,
+} from "@/i18n/content/projects";
 
 export const projectCategoryColors: Record<string, string> = {
   "Website Design": "bg-kathin-green/15 text-kathin-green",
   "Customer Project (Web)": "bg-kathin-green/15 text-kathin-green",
+  "Client Project (Web)": "bg-kathin-green/15 text-kathin-green",
   "UX/UI Design": "bg-kathin-blue/15 text-kathin-blue",
   "System Design": "bg-kathin-orange/15 text-kathin-orange",
   "Graphic Design": "bg-kathin-orange/15 text-kathin-orange",
@@ -13,13 +21,15 @@ export const projectCategoryColors: Record<string, string> = {
 };
 
 export function getProjectEmoji(slug: string) {
-  if (slug.includes("payment")) return "💳";
+  if (slug.includes("payment") || slug.includes("accounting")) return "💳";
   if (slug.includes("dashboard")) return "📊";
   if (slug.includes("landing")) return "🌐";
   if (slug === "graphic") return "✨";
   if (slug.includes("booking")) return "🏝️";
   if (slug.includes("changthai")) return "🏝️";
   if (slug.includes("bermahadev")) return "🔮";
+  if (slug.includes("inventory")) return "📦";
+  if (slug.includes("rattana")) return "🛠️";
   return "🎨";
 }
 
@@ -38,10 +48,18 @@ export default function FeaturedProjectCard({
   isActive = true,
   onFocus,
 }: Props) {
+  const { locale, t } = useLocale();
   const badgeClass =
     projectCategoryColors[project.category] ?? projectCategoryColors.default;
   const number = String(index).padStart(2, "0");
   const active = variant === "static" ? true : isActive;
+  const category = getProjectCategory(
+    project.slug,
+    project.category,
+    locale,
+    t.categories
+  );
+  const summary = getProjectSummary(project.slug, project.summary, locale);
 
   return (
     <Link
@@ -65,32 +83,36 @@ export default function FeaturedProjectCard({
         }`}
         aria-hidden
       >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_20%_50%,rgba(255,87,34,0.07),transparent_65%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_85%_80%,rgba(255,87,34,0.05),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_20%_50%,rgba(255,87,34,0.07),transparent_65%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_85%_80%,rgba(255,87,34,0.05),transparent_60%)]" />
       </div>
 
       <div className="relative z-10 flex min-h-[280px] flex-col sm:min-h-[300px] md:min-h-[320px] md:flex-row md:items-stretch lg:min-h-[340px]">
         <div className="md:w-[46%] md:shrink-0 p-4 sm:p-6 md:py-7 md:pl-7 md:pr-3">
-            <div className="glass-frame relative flex aspect-[4/3] min-h-[160px] items-center justify-center overflow-hidden rounded-[var(--kathin-radius-md)] p-3 sm:min-h-[190px] sm:p-4 md:aspect-auto md:min-h-[220px] lg:min-h-[240px]">
-              <div
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_45%,rgba(255,87,34,0.1),transparent_70%)]"
-                aria-hidden
-              />
-              <span
-                className={`pointer-events-none absolute bottom-2 right-3 z-10 select-none font-display text-3xl font-bold leading-none sm:bottom-4 sm:right-5 sm:text-5xl ${
-                  active ? "text-white/[0.1]" : "text-white/[0.06]"
-                }`}
-                aria-hidden
-              >
-                {number}
-              </span>
-              <ProjectCardPreview
-                lottie={project.lottie}
-                image={project.image}
-                emoji={getProjectEmoji(project.slug)}
-                hoverScale={active}
-              />
-            </div>
+          <div
+            className={`glass-frame relative flex aspect-[4/3] min-h-[160px] items-center justify-center overflow-hidden rounded-[var(--kathin-radius-md)] p-3 transition-transform duration-500 ease-out sm:min-h-[190px] sm:p-4 md:aspect-auto md:min-h-[220px] lg:min-h-[240px] ${
+              active ? "scale-[1.02] md:scale-[1.03]" : "scale-100"
+            }`}
+          >
+            <div
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_45%,rgba(255,87,34,0.1),transparent_70%)]"
+              aria-hidden
+            />
+            <span
+              className={`pointer-events-none absolute bottom-2 right-3 z-10 select-none font-display text-3xl font-bold leading-none sm:bottom-4 sm:right-5 sm:text-5xl ${
+                active ? "text-white/[0.1]" : "text-white/[0.06]"
+              }`}
+              aria-hidden
+            >
+              {number}
+            </span>
+            <ProjectCardPreview
+              lottie={project.lottie}
+              image={project.image}
+              emoji={getProjectEmoji(project.slug)}
+              hoverScale={active}
+            />
+          </div>
         </div>
 
         <div className="relative z-10 flex min-w-0 flex-1 flex-col justify-between px-5 pb-6 pt-1 sm:px-6 sm:pb-7 md:py-7 md:pl-4 md:pr-8">
@@ -99,7 +121,7 @@ export default function FeaturedProjectCard({
               <span
                 className={`rounded-full px-3 py-1 text-xs font-medium ${badgeClass}`}
               >
-                {project.category}
+                {category}
               </span>
             </div>
 
@@ -107,7 +129,7 @@ export default function FeaturedProjectCard({
               {project.title}
             </h3>
             <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-kathin-muted sm:text-base">
-              {project.summary}
+              {summary}
             </p>
           </div>
 
@@ -118,7 +140,7 @@ export default function FeaturedProjectCard({
                 : "text-kathin-muted"
             }`}
           >
-            <span>View case study</span>
+            <span>{t.caseStudy.viewCase}</span>
             <ArrowRightIcon
               size="sm"
               className={`transition-transform duration-300 ${

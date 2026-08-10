@@ -8,12 +8,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import ContactButtonWithModal from "./ContactButtonWithModal";
 import { MenuIcon, XIcon } from "@/components/icons/outlined";
 import { fadeDown, fadeOnly } from "@/lib/motion";
-
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-];
+import { useLocale } from "@/i18n/LocaleProvider";
+import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -24,6 +20,13 @@ export default function KathinNav() {
   const pathname = usePathname() ?? "";
   const [open, setOpen] = useState(false);
   const reduceMotion = useReducedMotion();
+  const { t } = useLocale();
+
+  const links = [
+    { href: "/", label: t.nav.home },
+    { href: "/projects", label: t.nav.projects },
+    { href: "/about", label: t.nav.about },
+  ];
 
   return (
     <motion.header
@@ -64,21 +67,25 @@ export default function KathinNav() {
             ))}
           </ul>
 
-          <div className="hidden md:block">
-            <ContactButtonWithModal className="btn btn-ghost px-5 py-2.5">
-              Connect
+          <div className="hidden shrink-0 items-center gap-3 md:flex">
+            <LanguageSwitcher />
+            <ContactButtonWithModal className="btn btn-ghost min-w-[6rem] justify-center px-5 py-2.5">
+              {t.nav.connect}
             </ContactButtonWithModal>
           </div>
 
-          <button
-            type="button"
-            className="rounded-full p-2 text-kathin-text md:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <XIcon size="md" /> : <MenuIcon size="md" />}
-          </button>
+          <div className="flex shrink-0 items-center gap-2 md:hidden">
+            <LanguageSwitcher />
+            <button
+              type="button"
+              className="rounded-full p-2 text-kathin-text"
+              aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
+              aria-expanded={open}
+              onClick={() => setOpen(!open)}
+            >
+              {open ? <XIcon size="md" /> : <MenuIcon size="md" />}
+            </button>
+          </div>
         </nav>
 
         {open && (
@@ -101,7 +108,7 @@ export default function KathinNav() {
               ))}
               <li className="mt-2 border-t border-[var(--kathin-border)] pt-2">
                 <ContactButtonWithModal className="btn btn-ghost w-full rounded-kathin-sm px-4 py-3">
-                  Connect
+                  {t.nav.connect}
                 </ContactButtonWithModal>
               </li>
             </ul>

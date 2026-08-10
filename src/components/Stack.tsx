@@ -14,14 +14,14 @@ import ScrollRevealStagger from "@/components/ScrollRevealStagger";
 export function StackItemCard({ item }: { item: StackItem }) {
   if (item.type === "logo") {
     return (
-      <div className="kathin-card-inner flex items-center gap-4 p-5 hover-lift md:p-6">
-        <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-kathin-text/[0.06]">
+      <div className="group kathin-card-inner flex items-center gap-4 p-5 hover-lift md:p-6">
+        <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-kathin-text/[0.06] transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:scale-105 group-hover:bg-[rgba(255,87,34,0.12)]">
           <Image
             src={item.icon}
             alt={item.name}
             width={40}
             height={40}
-            className="object-contain"
+            className="object-contain transition-transform duration-300 ease-out group-hover:scale-110"
           />
         </div>
         <div className="min-w-0">
@@ -33,10 +33,12 @@ export function StackItemCard({ item }: { item: StackItem }) {
   }
   const IconComponent = stackIconMap[item.iconKey] ?? ComponentsIcon;
   return (
-    <div className="kathin-card-inner flex items-center gap-4 p-5 hover-lift md:p-6">
-      <IconBadge size="md">
-        <IconComponent size="lg" />
-      </IconBadge>
+    <div className="group kathin-card-inner flex items-center gap-4 p-5 hover-lift md:p-6">
+      <div className="transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:scale-105">
+        <IconBadge size="md">
+          <IconComponent size="lg" />
+        </IconBadge>
+      </div>
       <div className="min-w-0">
         <p className="font-medium text-kathin-text">{item.name}</p>
         <p className="mt-0.5 text-sm text-kathin-muted">{item.description}</p>

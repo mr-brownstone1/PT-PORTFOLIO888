@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import PageLayout from "@/components/PageLayout";
 import ProjectPortfolioList from "@/components/ProjectPortfolioList";
-import SectionHeader from "@/components/SectionHeader";
-import ScrollReveal from "@/components/ScrollReveal";
+import ProjectsPageHeader from "@/components/ProjectsPageHeader";
 import { projects } from "@/config/projects";
 
 export const metadata: Metadata = {
@@ -11,7 +10,6 @@ export const metadata: Metadata = {
     "UX/UI case studies—booking systems, inventory & POS, websites, dashboards, accounting, and graphic design.",
 };
 
-/** โปรเจกต์ที่มีรูป preview ขึ้นก่อน */
 function sortProjectsForPortfolio() {
   return [...projects].sort((a, b) => {
     const aHasPreview = Boolean(a.image || a.lottie);
@@ -28,14 +26,7 @@ export default function ProjectsPage() {
   return (
     <PageLayout>
       <div className="page-container pb-20 md:pb-28">
-        <ScrollReveal>
-          <SectionHeader
-            eyebrow="Portfolio"
-            title="Crafted Experiences"
-            description="A collection of design solutions crafted with purpose, creativity, and attention to detail."
-          />
-        </ScrollReveal>
-
+        <ProjectsPageHeader />
         <ProjectPortfolioList projects={portfolioProjects} />
       </div>
     </PageLayout>

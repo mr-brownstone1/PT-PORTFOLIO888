@@ -1,4 +1,4 @@
-/** Shared Problem → Process → Outcome blocks for case studies */
+/** Shared narrative for case studies — process steps drive the UI strip */
 export type CaseStudyNarrative = {
   problem: string;
   process: string | string[];
@@ -9,8 +9,11 @@ export type CaseStudyNarrative = {
 export type PortfolioIntro = {
   role: string;
   tagline: string;
-  overview: string;
+  /** Optional long blurb — prefer tagline + highlights */
+  overview?: string;
   tools?: string;
+  /** Short selling points — what was delivered */
+  highlights?: string[];
   narrative?: CaseStudyNarrative;
   /** Short note linking to a related case study */
   relatedCaseStudy?: {

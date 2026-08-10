@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
-import { Inter } from "next/font/google";
+import { Inter, Noto_Sans_Thai } from "next/font/google";
 import ClientChrome from "@/components/ClientChrome";
 import { getSiteUrl, siteDescription, siteName } from "@/lib/site";
 import "./globals.css";
 
-/** Single Inter load — fewer font files = faster first compile */
+/** Inter has no Thai subset — pair with Noto Sans Thai for bilingual UI */
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
   weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const notoThai = Noto_Sans_Thai({
+  subsets: ["thai"],
+  variable: "--font-thai",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -51,7 +58,11 @@ export default function RootLayout({
   } as CSSProperties;
 
   return (
-    <html lang="en" className={inter.variable} style={htmlStyle}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${notoThai.variable}`}
+      style={htmlStyle}
+    >
       <body className="min-h-screen font-sans text-kathin-text antialiased">
         <ClientChrome>{children}</ClientChrome>
       </body>

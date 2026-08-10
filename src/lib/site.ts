@@ -12,4 +12,4 @@ export function getSiteUrl(): string {
 export const siteName = "Suphaphorn | UX/UI Designer";
 
 export const siteDescription =
-  "UX/UI designer portfolio—case studies for booking systems, inventory & POS, websites, dashboards, and product design.";
+  "UX/UI designer portfolio — booking systems, inventory & POS, websites, dashboards, and more.";

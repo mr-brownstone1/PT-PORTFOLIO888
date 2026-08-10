@@ -23,7 +23,7 @@ export const websiteLandingMacDemo = {
   title: "Marketing Landing Page",
   category: "Landing page",
   summary:
-    "After-sales service marketing site—hero, features, pricing, and contact on one responsive scroll. Explore the full page inside the MacBook frame.",
+    "After-sales marketing page — hero, features, pricing, contact. Scroll it inside the MacBook.",
   frame: landingScrollDemo.frame,
   screenshot: landingScrollDemo.screenshot,
   alt: landingScrollDemo.alt,
@@ -33,22 +33,22 @@ export const websitePortfolioIntro: PortfolioIntro = {
   role: "UX/UI Designer",
   tools: "Figma",
   tagline:
-    "Landing pages and business websites—marketing sites and retail web apps in one portfolio.",
-  overview:
-    "Work spans marketing landings, retail dashboards, hospital equipment management, and field-service platforms—responsive layouts with clear tables, forms, and workflows for desktop and smaller screens.",
+    "Marketing landings and business websites — plus retail web apps in one portfolio.",
+  highlights: [
+    "Marketing landings",
+    "Retail / POS web apps",
+    "Healthcare & field service",
+  ],
   narrative: {
     problem:
-      "Clients needed both marketing presence and operational web apps—often with dense tables and forms that had to work on desktop and smaller screens without a separate mobile product.",
+      "Clients needed marketing sites and workday web apps — dense tables and forms on desktop and phone.",
     process: [
-      "Structured page types: marketing landings, listing/detail patterns, and admin-style tables",
-      "Designed responsive breakpoints and component reuse across retail, healthcare, and service verticals",
-      "Prototyped key flows (borrow/return, contracts, branch management) before visual polish",
+      "Landings, lists, and admin tables",
+      "Reuse patterns across industries",
+      "Prototype the main work flows first",
     ],
     outcome:
-      "Ship-ready responsive sites and web apps where users complete real tasks—not only browse marketing content.",
-    learnings: [
-      "Landing scroll demos help stakeholders envision marketing pages; operational screens still need table-first layouts tested with real data density.",
-    ],
+      "Responsive sites where people finish real tasks — not just browse.",
   },
 };
 
@@ -57,8 +57,7 @@ export const websitePortfolioSections: RattanaPortfolioProject[] = [
     id: "dashboard",
     title: "Dashboard & Overview",
     category: "Analytics",
-    summary:
-      "Overview reports and executive dashboards—KPI cards, charts, and inventory summaries at a glance.",
+    summary: "KPI cards, charts, and inventory summaries at a glance.",
     images: [
       img(4, "Overview report — sales and inventory metrics"),
       img(8, "Executive dashboard — sales, orders, and stock"),
@@ -70,8 +69,7 @@ export const websitePortfolioSections: RattanaPortfolioProject[] = [
     id: "sales-pos",
     title: "Sales & POS",
     category: "In-store",
-    summary:
-      "Point-of-sale flows: browse products, build a cart, receive items, and check out with payment summary.",
+    summary: "Browse, cart, receive, and check out with payment summary.",
     images: [
       img(11, "POS — product detail and checkout sidebar"),
       img(15, "POS — ring catalog grid"),
@@ -84,8 +82,7 @@ export const websitePortfolioSections: RattanaPortfolioProject[] = [
     id: "inventory",
     title: "Inventory & Products",
     category: "Stock",
-    summary:
-      "Product master data, stock analysis, and gemstone information—with tables tuned for daily operations.",
+    summary: "Product master, stock analysis, and gemstone tables for daily ops.",
     images: [
       img(2, "Product info — gemstone / diamond form"),
       img(3, "Jewelry stock analysis table"),
@@ -97,8 +94,7 @@ export const websitePortfolioSections: RattanaPortfolioProject[] = [
     id: "orders-reports",
     title: "Orders & Reports",
     category: "Back office",
-    summary:
-      "Purchase orders, sales documents, and reporting—with filters, status badges, and export-friendly tables.",
+    summary: "POs, sales docs, and reports—filters and export-friendly tables.",
     images: [
       img(5, "Transaction — purchase order list"),
       img(14, "Daily sale report"),
@@ -111,8 +107,7 @@ export const websitePortfolioSections: RattanaPortfolioProject[] = [
     id: "admin-design",
     title: "Admin & Design System",
     category: "Foundation",
-    summary:
-      "Employee profiles, access rights, UI components, and full-flow maps for handoff to development.",
+    summary: "Profiles, access rights, components, and flow maps for handoff.",
     images: [
       img(18, "Employee profile and permissions"),
       img(13, "UI component library"),
@@ -124,8 +119,7 @@ export const websitePortfolioSections: RattanaPortfolioProject[] = [
     id: "ymedi",
     title: "Hospital Equipment Platform",
     category: "Healthcare",
-    summary:
-      "Medical equipment registration and tracking—users, device lists, multi-step forms, and borrow/return workflows.",
+    summary: "Equipment lists, multi-step forms, and borrow/return workflows.",
     images: [
       ymedi("01-users.png", "User management table"),
       ymedi("02-equipment-list.png", "Registered equipment list"),
@@ -138,8 +132,7 @@ export const websitePortfolioSections: RattanaPortfolioProject[] = [
     id: "yservice",
     title: "Field Service Platform",
     category: "Operations",
-    summary:
-      "Technician service platform—warehouse inventory, branches, service contracts, PM/CAL jobs, and installation documents.",
+    summary: "Warehouse, branches, contracts, PM/CAL, and installation docs.",
     images: [
       yservice("01-warehouse.png", "Equipment warehouse list"),
       yservice("02-branches.png", "Branches and departments"),
