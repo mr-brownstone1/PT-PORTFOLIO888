@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { Inter } from "next/font/google";
-import IntroSplash from "@/components/IntroSplash";
-import SmoothScroll from "@/components/SmoothScroll";
+import ClientChrome from "@/components/ClientChrome";
 import { getSiteUrl, siteDescription, siteName } from "@/lib/site";
-import "lenis/dist/lenis.css";
 import "./globals.css";
 
+/** Single Inter load — fewer font files = faster first compile */
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-});
-
-const interDisplay = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter-display",
   display: "swap",
   weight: ["400", "500", "600", "700", "800", "900"],
 });
@@ -51,17 +45,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const htmlStyle = {
+    colorScheme: "light dark",
+    ["--font-inter-display"]: "var(--font-inter)",
+  } as CSSProperties;
+
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${interDisplay.variable}`}
-      style={{ colorScheme: "light dark" }}
-    >
+    <html lang="en" className={inter.variable} style={htmlStyle}>
       <body className="min-h-screen font-sans text-kathin-text antialiased">
-        <SmoothScroll>
-          <IntroSplash />
-          {children}
-        </SmoothScroll>
+        <ClientChrome>{children}</ClientChrome>
       </body>
     </html>
   );

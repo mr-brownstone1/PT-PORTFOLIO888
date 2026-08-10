@@ -1,10 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
-import ProjectMockupMarquee from "./ProjectMockupMarquee";
 import { ArrowRightIcon } from "@/components/icons/outlined";
 import { fadeOnly, fadeUpBlur, staggerContainer } from "@/lib/motion";
+
+const ProjectMockupMarquee = dynamic(() => import("./ProjectMockupMarquee"), {
+  ssr: false,
+});
 
 const nameLines = ["Suphaphorn", "Khan-Ngoen"];
 

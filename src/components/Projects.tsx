@@ -1,9 +1,18 @@
+"use client";
+
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { ArrowRightIcon } from "@/components/icons/outlined";
-import ProjectCarousel from "./ProjectCarousel";
 import SectionHeader from "./SectionHeader";
 import ScrollReveal from "./ScrollReveal";
 import { getFeaturedProjects } from "@/config/projects";
+
+const ProjectCarousel = dynamic(() => import("./ProjectCarousel"), {
+  ssr: false,
+  loading: () => (
+    <div className="mx-auto mt-10 h-64 max-w-5xl animate-pulse rounded-[var(--kathin-radius-lg)] bg-kathin-surface-solid/40" />
+  ),
+});
 
 export default function Projects() {
   const featured = getFeaturedProjects();
