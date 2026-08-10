@@ -1,4 +1,4 @@
-import type { Locale } from "./types";
+import type { Locale } from "../types";
 
 /** Thai project cards — keep product terms in English where Thai sounds forced */
 export const projectCopyTh: Record<
